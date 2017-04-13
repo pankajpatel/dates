@@ -1,0 +1,11 @@
+{
+  "name": "dates-webcomponent",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:pankajpatel/dates.git",
+  "author": "Pankaj Patel <patel.pankaj@live.in>",
+  "license": "MIT",
+  "dependencies": {
+    "webcomponentsjs": "^1.0.2"
+  }
+}

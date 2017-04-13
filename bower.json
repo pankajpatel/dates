@@ -1,0 +1,17 @@
+{
+    "name": "dates-component",
+    "version": "0.0.0",
+    "description": "The AirBnB's react-dates port to web components",
+    "license": "MIT",
+    "main": "dates-component.html",
+    "keywords": [
+        "web-components"
+    ],
+    "ignore": [
+        "**/.*",
+        "bower_components"
+    ],
+    "dependencies": {
+        "webcomponentsjs": "^0.7.0"
+    }
+}
