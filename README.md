@@ -1,4 +1,4 @@
-# &lt;git@github.com:pankajpatel/dates.git&gt;
+# Dates
 
 > The AirBnB's react-dates port to web components
 
