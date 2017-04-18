@@ -1,0 +1,41 @@
+<div
+  className={cx('DateInput', {
+    'DateInput--with-caret': showCaret && focused,
+    'DateInput--disabled': disabled,
+  })}
+>
+  <input
+    aria-label={placeholder}
+    className="DateInput__input needsclick"
+    type="text"
+    id={id}
+    name={id}
+    ref={(ref) => { this.inputRef = ref; }}
+    value={value}
+    onChange={this.onChange}
+    onKeyDown={throttle(this.onKeyDown, 300)}
+    onFocus={onFocus}
+    placeholder={placeholder}
+    autoComplete="off"
+    disabled={disabled}
+    readOnly={isTouch}
+    required={required}
+    aria-describedby={screenReaderMessage && screenReaderMessageId}
+  />
+
+  {screenReaderMessage && (
+    <p id={screenReaderMessageId} className="screen-reader-only">
+      {screenReaderMessage}
+    </p>
+  )}
+
+  <div
+    className={cx('DateInput__display-text', {
+      'DateInput__display-text--has-input': !!value,
+      'DateInput__display-text--focused': focused,
+      'DateInput__display-text--disabled': disabled,
+    })}
+  >
+    {displayText}
+  </div>
+</div>

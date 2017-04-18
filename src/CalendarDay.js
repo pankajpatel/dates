@@ -1,6 +1,4 @@
 const moment = require('moment');
-let localeData = moment.localeData()
-const months = localeData.months();
 
 (function(window, document, undefined) {
   // Refers to the "importer", which is index.html
@@ -29,10 +27,6 @@ const months = localeData.months();
     var clone1 = thatDoc.importNode(month, true);
     shadowRoot.appendChild(clone);
     shadowRoot.appendChild(clone1);
-
-    var d = new Date();
-    console.log(d);
-    shadowRoot.querySelector('header').textContent = months[d.getMonth()];
 
     // Caches <strong> DOM query
     this.strong = shadowRoot.querySelector('strong');

@@ -1,0 +1,15 @@
+<td class="small">
+  <button
+    type="button"
+    class="CalendarDay__button"
+    ref={(ref) => { this.buttonRef = ref; }}
+    aria-label={ariaLabel}
+    onMouseEnter={(e) => { this.onDayMouseEnter(day, e); }}
+    onMouseLeave={(e) => { this.onDayMouseLeave(day, e); }}
+    onMouseUp={(e) => { e.currentTarget.blur(); }}
+    onClick={(e) => { this.onDayClick(day, e); }}
+    tabIndex={tabIndex}
+  >
+    {renderDay ? renderDay(day) : day.format('D')}
+  </button>
+</td>

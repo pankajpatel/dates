@@ -1,0 +1,30 @@
+<div
+  ref={(ref) => { this.container = ref; }}
+  className={className}
+  style={style}
+  onTransitionEnd={onMonthTransitionEnd}
+>
+  {months.map((month, i) => {
+    const isVisible =
+      (i >= firstVisibleMonthIndex) && (i < firstVisibleMonthIndex + numberOfMonths);
+    return (
+      <d-month
+        key={month.format('YYYY-MM')}
+        month={month}
+        isVisible={isVisible}
+        enableOutsideDays={enableOutsideDays}
+        modifiers={modifiers}
+        monthFormat={monthFormat}
+        orientation={orientation}
+        onDayMouseEnter={onDayMouseEnter}
+        onDayMouseLeave={onDayMouseLeave}
+        onDayClick={onDayClick}
+        renderDay={renderDay}
+        daySize={daySize}
+        focusedDate={isVisible ? focusedDate : null}
+        isFocused={isFocused}
+        phrases={phrases}
+      ></d-month>
+    );
+  })}
+</div>
