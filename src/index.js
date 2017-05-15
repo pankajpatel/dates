@@ -2,6 +2,8 @@ const moment = require('moment');
 let localeData = moment.localeData()
 const months = localeData.months();
 
+import './scss/base.scss';
+
 (function(window, document, undefined) {
   // Refers to the "importer", which is index.html
   var thatDoc = document;

@@ -6,7 +6,7 @@
   "author": "Pankaj Patel <patel.pankaj@live.in>",
   "license": "MIT",
   "dependencies": {
-    "dot": "^1.1.1",
+    "hyperhtml": "^0.10.2",
     "moment": "^2.18.1",
     "webcomponentsjs": "^1.0.2"
   },

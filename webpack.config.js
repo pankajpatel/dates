@@ -33,6 +33,13 @@ module.exports = {
           presets: ['es2015']
         }
       }, {
+        test: /.t.html?$/,
+        loader: 'hyperhtml-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015']
+        }
+      }, {
         test: /.scss?$/,
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader'}),
         exclude: /node_modules/
