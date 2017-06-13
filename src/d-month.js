@@ -1,5 +1,5 @@
 const moment = require('moment');
-import monthWeeks from './utils/getCalendarMonthWeeks';
+const monthWeeks = require('./utils/getCalendarMonthWeeks');
 const monthFormat = 'MMMM YYYY';
 
 const weekHeader = () => {
@@ -10,22 +10,23 @@ const weekHeader = () => {
   return (`<ul>${header.join('')}</ul>`);
 }
 
-const getDay = (day) => {
+const getDay = (day, month) => {
+  let disabled = (day && month && day.month() !== month.month()) ? 'disabled' : '';
   return day
-    ? `<td class="d-calendar-day">
-        <button type="button" class="d-calendar-day" data-date="${day.format('YYYY-MM-DD')}">${day.format('D')}</button>
+    ? `<td class="d-calendar-day ${disabled}">
+        <button type="button" ${disabled} class="d-calendar-day" data-date="${day.format('YYYY-MM-DD')}">${day.format('D')}</button>
       </td>`
     : `<td></td>`;
 }
 
 const monthHtml = day => {
   let month = moment(day)
-  let weeks = monthWeeks(month);
+  let weeks = monthWeeks(month, true);
   const monthTitle = month.format(monthFormat);
   var weekHtml = weeks.map((week, i) => {
       return `<tr>
         ${week.map((day, j) => {
-          return `${getDay(day)}`;
+          return `${getDay(day, month)}`;
         }).join('')}
       </tr>`
     }).join('')

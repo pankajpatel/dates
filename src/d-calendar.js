@@ -1,4 +1,4 @@
-import monthWeeks from './utils/getCalendarMonthWeeks';
+const monthWeeks = require('./utils/getCalendarMonthWeeks');
 
 (function(window, document, undefined) {
   var thatDoc = document;
@@ -34,8 +34,28 @@ import monthWeeks from './utils/getCalendarMonthWeeks';
     this.innerHTML = html;
     this.addEventListener('click', (e) => {
       if(e.target.classList.contains('d-calendar-day')){
-        console.log(e.target.dataset.date);
+        let value = e.target.dataset.date;
+        console.log(value);
+        Array.prototype.slice.apply(document.querySelectorAll(this.getAttribute('on'))).forEach(el => {
+          el.value = value;
+        })
       }
+    })
+    const openEvent = this.getAttribute('open-event');
+    const closeEvent = this.getAttribute('close-event');
+    Array.prototype.slice.apply(document.querySelectorAll(this.getAttribute('on'))).forEach(el => {
+      el.addEventListener(openEvent, (e) => {
+        let pos = el.getBoundingClientRect()
+        this.style.position = 'absolute';
+        this.style.top = pos.bottom + 'px';
+        this.style.left = pos.left + 'px';
+        this.removeAttribute('hidden');
+      })
+      el.addEventListener(closeEvent, (e) => {
+        setTimeout(() => {
+          this.setAttribute('hidden', true);
+        }, 100);
+      })
     })
   };
 

@@ -1,4 +1,7 @@
 d-calendar {
+  &[hidden] {
+    display: none;
+  }
   font-family: system-ui;
   > div {
     border: 1px solid #ccc;
@@ -58,7 +61,10 @@ d-calendar {
       font-size: 1em;
       border: 0;
       background: transparent;
-      &:hover {
+      &[disabled]{
+        color: #dedede;
+      }
+      &:not([disabled]):hover {
         background: #efefef;
       }
     }
