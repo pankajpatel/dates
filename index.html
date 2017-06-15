@@ -12,14 +12,21 @@
   <link rel="import" href="dates-component.html">
   <link rel="stylesheet" href="./dist/css/app.css">
   <style>
-    .datepicker {
+    input[type="text"] {
       padding: 5px;
       border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    d-calendar {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <input type="text" class="datepicker" placeholder="Pick the date">
-  <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="3" step="1" hidden></d-calendar>
+  <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="3" step="1" range>
+    <input type="text" class="datepicker" placeholder="From"> -
+    <input type="text" class="datepicker1" placeholder="To">
+  </d-calendar>
+  <input type="text" placeholder="Name">
 </body>
 </html>

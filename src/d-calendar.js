@@ -1,9 +1,8 @@
 const monthWeeks = require('./utils/getCalendarMonthWeeks');
+const template = require('./templates/calendar.t');
 
 (function(window, document, undefined) {
   var thatDoc = document;
-
-  var thisDoc =  (thatDoc._currentScript || thatDoc.currentScript).ownerDocument;
 
   var Calendar = Object.create(HTMLElement.prototype);
 
@@ -21,41 +20,34 @@ const monthWeeks = require('./utils/getCalendarMonthWeeks');
     }
     months.sort((a,b) => a.get('month') - b.get('month'));
 
-    var html = `
-    <div>
-      <div class="d-calendar">
-        <button class="d-calender-navigation-previous">&lt;</button>
-        <button class="d-calender-navigation-next">&gt;</button>
-        <div class="d-calendar-row">
-          ${months.map(month => `<d-month for-month="${moment(month).format('YYYY-MM-DD')}"></d-month>`).join('')}
-        </div>
-      </div>
-    </div>`;
-    this.innerHTML = html;
+    this.innerHTML += template({months, moment});
+    this._component = this.querySelector('.js-component');
+    const openEvent = this.getAttribute('open-event');
+    const closeEvent = this.getAttribute('close-event');
+
+    Array.prototype.slice.apply(document.querySelectorAll(this.getAttribute('on'))).forEach(el => {
+      el.addEventListener(openEvent, (e) => {
+        // let pos = el.getBoundingClientRect()
+        // this._component.style.top = pos.bottom + 'px';
+        // this._component.style.left = pos.left + 'px';
+        this._component.classList.remove('hidden');
+      })
+      el.addEventListener(closeEvent, (e) => {
+        setTimeout(() => {
+          if(!this.querySelectorAll(':focus').length){
+            this._component.classList.add('hidden');
+          }
+        }, 150);
+      })
+    });
     this.addEventListener('click', (e) => {
-      if(e.target.classList.contains('d-calendar-day')){
+      if(e.target.classList.contains('d-calendar-day-button')){
         let value = e.target.dataset.date;
         console.log(value);
         Array.prototype.slice.apply(document.querySelectorAll(this.getAttribute('on'))).forEach(el => {
           el.value = value;
         })
       }
-    })
-    const openEvent = this.getAttribute('open-event');
-    const closeEvent = this.getAttribute('close-event');
-    Array.prototype.slice.apply(document.querySelectorAll(this.getAttribute('on'))).forEach(el => {
-      el.addEventListener(openEvent, (e) => {
-        let pos = el.getBoundingClientRect()
-        this.style.position = 'absolute';
-        this.style.top = pos.bottom + 'px';
-        this.style.left = pos.left + 'px';
-        this.removeAttribute('hidden');
-      })
-      el.addEventListener(closeEvent, (e) => {
-        setTimeout(() => {
-          this.setAttribute('hidden', true);
-        }, 100);
-      })
     })
   };
 

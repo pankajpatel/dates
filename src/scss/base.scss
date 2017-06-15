@@ -1,13 +1,13 @@
 d-calendar {
-  &[hidden] {
+  .hidden {
     display: none;
   }
   font-family: system-ui;
   > div {
     border: 1px solid #ccc;
-    display: inline-block;
     padding-top: 58px;
-    position: relative;
+    position: absolute;
+    background: white;
   }
   .d-calendar {
     border-collapse: collapse;
@@ -58,6 +58,9 @@ d-calendar {
     height: 35px;
     box-sizing: border-box;
     button {
+      display: block;
+      width: 100%;
+      height: 100%;
       font-size: 1em;
       border: 0;
       background: transparent;

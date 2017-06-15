@@ -1,6 +1,6 @@
 # Dates
 
-> The AirBnB's react-dates port to web components
+> Basic Datepicker WebComponent inspired by AirBnB's react-dates
 
 ## Demo
 
@@ -24,23 +24,30 @@ Or [download as ZIP](https://github.com/pankajpatel/git@github.com:pankajpatel/d
     <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
     ```
 
-2. Import custom element:
+2. Import custom element script:
 
     ```html
-    <link rel="import" href="bower_components/git@github.com:pankajpatel/dates.git/dates-component.html">
+    <script src="./dist/dates-component.js"></script>
     ```
 
 3. Start using it!
 
     ```html
-    <dates-component></dates-component>
+    <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="3" step="1" range>
+      <input type="text" class="datepicker" placeholder="Pick the date">
+    </d-calendar>
     ```
 
 ## Options
 
 Attribute     | Options     | Default      | Description
 ---           | ---         | ---          | ---
-`foo`         | *string*    | `bar`        | Lorem ipsum dolor.
+`on`         | *string*    | `.datepicker`        | The Input selector on which DatePicker is to be bound
+`open-event`         | *string*    | `focus`        | Event name on the Input selector to trigger DatePicker's open
+`close-event`         | *string*    | `blur`        | Event name on the Input selector to trigger DatePicker's close
+`months`         | *number*    | `1`        | Number of months to be shown by Datepicker
+`step`         | *number*    | `1`        | Number of months to Step through on month navigation
+`range`         | *boolean*    | `true`        | Enables the rangepicker
 
 ## Methods
 
