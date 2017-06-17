@@ -12,16 +12,16 @@ const monthHtml = day => {
 }
 
 (function(window, document, undefined) {
-  var thatDoc = document;
 
   var Month = Object.create(HTMLElement.prototype);
 
-  Month.createdCallback = function() {
-    let date = this.getAttribute('for-month')
+  Month.createdCallback = function(d) {
+    let date = d || this.getAttribute('for-month')
+    console.log(date)
     this.innerHTML = monthHtml(date);
   };
 
-  window.CalendarMonth = thatDoc.registerElement('d-month', {
+  window.CalendarMonth = document.registerElement('d-month', {
     prototype: Month
   });
 })(window, document);

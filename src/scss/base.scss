@@ -57,6 +57,10 @@ d-calendar {
     width: 35px;
     height: 35px;
     box-sizing: border-box;
+    .selected {
+      background: rgba(150, 150, 150, 0.5);
+      color: #fff;
+    }
     button {
       display: block;
       width: 100%;
@@ -79,6 +83,7 @@ d-calendar {
     border: 1px solid #ccc;
     background: #eee;
     border-radius: 2px;
+    z-index: 1;
     &:hover{
       background: #dedede;
     }

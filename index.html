@@ -23,9 +23,12 @@
   </style>
 </head>
 <body>
+  <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="1" step="1" range>
+    <input type="text" class="datepicker" placeholder="DoB">
+  </d-calendar>
   <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="3" step="1" range>
-    <input type="text" class="datepicker" placeholder="From"> -
-    <input type="text" class="datepicker1" placeholder="To">
+    <input type="text" class="datepicker from" placeholder="From"> -
+    <input type="text" class="datepicker to" placeholder="To">
   </d-calendar>
   <input type="text" placeholder="Name">
 </body>
