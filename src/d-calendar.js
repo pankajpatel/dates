@@ -44,7 +44,7 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
     this.innerHTML += template({months: this.months, monthTagTemplate});
 
     this._component = this.querySelector('.js-component');
-
+    this.navFlag = 1;
     this.close = (e, force) => {
       setTimeout(() => {
         if(force || !this.querySelectorAll(':focus').length){
@@ -64,13 +64,17 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
         while(temp_container.firstChild){
           this.querySelector('.d-calendar-row').appendChild(temp_container.firstChild);
         }
-        this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth}px`;
+        this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
+        this.navFlag++;
         console.log(month);
       }
       console.log(this.months);
     }
     this.movePrevious = () => {
-
+      for (var index = 0; index < this.step; index++) {
+        this.navFlag--;
+        this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
+      }
     }
 
     $find(this.input, this).forEach(el => {
@@ -78,7 +82,7 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
         this._component.classList.remove('hidden');
         if(!this.monthWidth) {
           this.monthWidth = this.querySelector('d-month').getBoundingClientRect().width;
-          this._component.style.width = this.monthWidth + 'px';
+          this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
         }
       })
       el.addEventListener(this.closeEvent, this.close)

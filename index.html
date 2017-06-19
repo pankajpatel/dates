@@ -18,18 +18,38 @@
       margin-top: 10px;
     }
     d-calendar {
-      display: block;
+      display: inline-block;
+    }
+    label {
+      width: 80px;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
-  <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="1" step="1" range>
-    <input type="text" class="datepicker" placeholder="DoB">
-  </d-calendar>
-  <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="3" step="1" range>
-    <input type="text" class="datepicker from" placeholder="From"> -
-    <input type="text" class="datepicker to" placeholder="To">
-  </d-calendar>
-  <input type="text" placeholder="Name">
+  <p>
+    <label for="d1">M1S1</label><d-calendar on=".datepicker" open-event="focus" close-event="blur" months="1" step="1">
+      <input type="text" class="datepicker" placeholder="DoB">
+    </d-calendar>
+  </p>
+  <p>
+    <label for="d2">M2S1</label><d-calendar on=".datepicker" open-event="focus" close-event="blur" months="2" step="1">
+      <input type="text" class="datepicker" placeholder="DoB">
+    </d-calendar>
+  </p>
+  <p>
+    <label for="d3">M3S2</label><d-calendar on=".datepicker" open-event="focus" close-event="blur" months="3" step="2">
+      <input type="text" class="datepicker" placeholder="DoB">
+    </d-calendar>
+  </p>
+  <p>
+    <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="3" step="1" range>
+      <input type="text" class="datepicker from" placeholder="From"> -
+      <input type="text" class="datepicker to" placeholder="To">
+    </d-calendar>
+  </p>
+  <p>
+    <input type="text" placeholder="Name">
+  </p>
 </body>
 </html>
