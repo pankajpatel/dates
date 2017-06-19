@@ -8,18 +8,21 @@ d-calendar {
     padding-top: 58px;
     position: absolute;
     background: white;
+    overflow: hidden;
   }
   .d-calendar {
-    border-collapse: collapse;
     display: table;
+    border-collapse: collapse;
+    transition: margin ease 0.2s;
   }
   .d-calendar-row {
     display: table-row;
   }
   d-month {
     display: table-cell;
-    border-right: 1px solid #ccc;
-    &:last-child{
+    // border-right: 1px solid #ccc;
+    &:last-child,
+    &[months="1"] {
       border: 0
     }
   }
@@ -84,6 +87,8 @@ d-calendar {
     background: #eee;
     border-radius: 2px;
     z-index: 1;
+    font-size: 16px;
+    line-height: 1;
     &:hover{
       background: #dedede;
     }
@@ -93,5 +98,6 @@ d-calendar {
   }
   .d-calender-navigation-next {
     right: 8px;
+    transform: rotate(180deg)
   }
 }

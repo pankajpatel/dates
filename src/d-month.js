@@ -1,5 +1,5 @@
 const moment = require('moment');
-const monthWeeks = require('./utils/getCalendarMonthWeeks');
+const monthWeeks = require('./utils/getWeeks');
 const template = require('./templates/month.t');
 
 const monthFormat = 'MMMM YYYY';
