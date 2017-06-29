@@ -36,6 +36,9 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
     //Set default month element's width
     this.monthWidth = 0;
 
+    //Flag for the Navigation of months
+    this.navFlag = 0;
+
     let conf = getMonths(this.monthCount)
 
     this.months = conf.months;
@@ -44,7 +47,7 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
     this.innerHTML += template({months: this.months, monthTagTemplate});
 
     this._component = this.querySelector('.js-component');
-    this.navFlag = 1;
+    this.getWidth = () => this.querySelector('d-month').getBoundingClientRect().width;
     this.close = (e, force) => {
       setTimeout(() => {
         if(force || !this.querySelectorAll(':focus').length){
@@ -53,6 +56,13 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
       }, 100);
     }
 
+    this.updateWidth = width => {
+      this.monthWidth = width || this.getWidth();
+      this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
+    }
+    this.slide = () => {
+      this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
+    }
     this.moveNext = (step) => {
       for (var index = 0; index < this.step; index++) {
         let month = this.months[this.months.length - 1].add(1, 'month');
@@ -60,20 +70,21 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
         this.monthsMap[month.format('YYYYMM')] = month;
         let temp_container = document.createElement('div');
         temp_container.innerHTML = monthTagTemplate(month);
-        console.log(temp_container.firstChild.getBoundingClientRect())
         while(temp_container.firstChild){
           this.querySelector('.d-calendar-row').appendChild(temp_container.firstChild);
         }
-        this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
         this.navFlag++;
-        console.log(month);
+        console.log(this.navFlag, `-${this.monthWidth * this.navFlag}px`);
+        this.slide();
+        // console.log(month);
       }
-      console.log(this.months);
+      // console.log(this.months);
     }
     this.movePrevious = () => {
       for (var index = 0; index < this.step; index++) {
         this.navFlag--;
-        this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
+        console.log(this.navFlag, `-${this.monthWidth * this.navFlag}px`);
+        this.slide();
       }
     }
 
@@ -81,8 +92,7 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
       el.addEventListener(this.openEvent, (e) => {
         this._component.classList.remove('hidden');
         if(!this.monthWidth) {
-          this.monthWidth = this.querySelector('d-month').getBoundingClientRect().width;
-          this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
+          this.updateWidth();
         }
       })
       el.addEventListener(this.closeEvent, this.close)
@@ -98,19 +108,26 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
         })
       }
     });
+
+    this.cosmetics = (direction) => {
+      let monthWidth = this.getWidth();
+      if(this.monthWidth != monthWidth){
+        this.updateWidth(monthWidth);
+
+      }
+    }
     this.querySelector('.d-calender-navigation-previous').addEventListener('click', (e) => {
-      console.log(e)
       this.movePrevious();
+      this.cosmetics();
     })
     this.querySelector('.d-calender-navigation-next').addEventListener('click', (e) => {
-      console.log(e)
       this.moveNext();
+      this.cosmetics();
     })
     $find('.d-calendar-day-button', this).forEach(el => {
       el.addEventListener('mouseenter', e => {
 
         this.hoveredDate = e.target.value;
-        console.log(this.hoveredDate)
       })
     });
   };
