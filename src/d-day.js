@@ -6,9 +6,12 @@ const template = require('./templates/day.t');
   var Day = Object.create(HTMLElement.prototype);
 
   Day.createdCallback = function() {
+    this.day = moment(this.getAttribute('date'));
     this.outerHTML = template({
+      day: this.day,
+      selected: this.day.date() == 15,
+      highlighted: this.day.date() == 18,
       class: this.getAttribute('class') || '',
-      day: moment(this.getAttribute('date')),
       disabled: this.getAttribute('disabled'),
     })
   };

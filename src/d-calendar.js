@@ -4,14 +4,13 @@ const getMonths = require('./utils/getMonths');
 const template = require('./templates/calendar.t');
 const monthTagTemplate = require('./templates/month.tag.t');
 
-// moment.locale('en');
-moment.locale('de');
-
 const $find = (selector, context = document) => Array.prototype.slice.apply( context.querySelectorAll(selector) );
 
 const directionalFunction = bool => bool ? 'add' : 'subtract';
 
 (function(window, document, undefined) {
+  // moment.locale('en');
+  moment.locale('de');
 
   var Calendar = Object.create(HTMLElement.prototype);
 
@@ -39,11 +38,13 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
     //Flag for the Navigation of months
     this.navFlag = 0;
 
-    let conf = getMonths(this.monthCount)
+    let value = this.querySelector(this.input).value;
+
+    let conf = getMonths(this.monthCount, value);
 
     this.months = conf.months;
     this.monthsMap = conf.map;
-    this.activeMonths = [moment(new Date).format['YYYYMM']];
+    // this.activeMonths = [moment(new Date).format['YYYYMM']];
     this.innerHTML += template({months: this.months, monthTagTemplate});
 
     this._component = this.querySelector('.js-component');

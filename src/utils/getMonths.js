@@ -1,9 +1,9 @@
 const moment = require('moment');
-module.exports = (count) => {
+module.exports = (count, pivot) => {
   const months = [];
   let monthMap = {};
   for(let i = 0; i < count; i++) {
-    let date = moment(new Date());
+    let date = moment(pivot || new Date());
     let direction = Boolean(i%2);
     let num = parseInt((i+1)/2);
     if(i > 0){

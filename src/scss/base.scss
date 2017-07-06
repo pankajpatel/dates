@@ -64,6 +64,14 @@ d-calendar {
       background: rgba(150, 150, 150, 0.5);
       color: #fff;
     }
+    .d-day-selected {
+      background: rgba(100, 100, 100, 0.2);
+      color: #fff;
+    }
+    .d-day-highlighted {
+      background: rgba(100, 100, 100, 0.5);
+      color: #fff;
+    }
     button {
       display: block;
       width: 100%;

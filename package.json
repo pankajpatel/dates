@@ -5,6 +5,10 @@
   "repository": "git@github.com:pankajpatel/dates.git",
   "author": "Pankaj Patel <patel.pankaj@live.in>",
   "license": "MIT",
+  "scripts":{
+    "watch": "webpack --progress --watch",
+    "build": "webpack --progress --production"
+  },
   "dependencies": {
     "moment": "^2.18.1",
     "webcomponentsjs": "^1.0.2"
