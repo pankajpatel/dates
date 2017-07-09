@@ -1,3 +1,5 @@
+$d-day-box-size: 35px;
+
 d-calendar {
   .hidden {
     display: none;
@@ -9,6 +11,10 @@ d-calendar {
     position: absolute;
     background: white;
     overflow: hidden;
+    box-sizing: content-box;
+    * {
+      box-sizing: border-box;
+    }
   }
   .d-calendar {
     display: table;
@@ -27,8 +33,7 @@ d-calendar {
     }
   }
   .d-calendar-month {
-    padding: 5px;
-    margin: 5px;
+    padding: 10px;
     table {
       border-collapse: collapse;
       position: relative
@@ -57,8 +62,8 @@ d-calendar {
   .d-calendar-day {
     border: 1px solid #e4e4e4;
     padding: 0;
-    width: 35px;
-    height: 35px;
+    width: $d-day-box-size;
+    height: $d-day-box-size;
     box-sizing: border-box;
     .selected {
       background: rgba(150, 150, 150, 0.5);
@@ -74,8 +79,8 @@ d-calendar {
     }
     button {
       display: block;
-      width: 100%;
-      height: 100%;
+      width: $d-day-box-size - 1;
+      height: $d-day-box-size - 1;
       font-size: 1em;
       border: 0;
       background: transparent;

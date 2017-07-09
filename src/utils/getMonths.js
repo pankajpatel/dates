@@ -12,6 +12,6 @@ module.exports = (count, pivot) => {
     months.push(date);
     monthMap[date.format('YYYYMM')] = date;
   }
-  months.sort((a,b) => a.get('month') - b.get('month'));
+  months.sort((a,b) => parseInt(a.format('YYYYMM')) - parseInt(b.format('YYYYMM')));
   return {months, map: monthMap};
 }

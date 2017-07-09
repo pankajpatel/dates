@@ -9,8 +9,8 @@ const template = require('./templates/day.t');
     this.day = moment(this.getAttribute('date'));
     this.outerHTML = template({
       day: this.day,
-      selected: this.day.date() == 15,
-      highlighted: this.day.date() == 18,
+      selected: Boolean(this.getAttribute('selected')),
+      highlighted: Boolean(this.getAttribute('highlighted')),
       class: this.getAttribute('class') || '',
       disabled: this.getAttribute('disabled'),
     })

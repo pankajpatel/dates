@@ -17,7 +17,6 @@ const monthHtml = day => {
 
   Month.createdCallback = function(d) {
     let date = d || this.getAttribute('for-month')
-    console.log(date)
     this.innerHTML = monthHtml(date);
   };
 

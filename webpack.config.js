@@ -9,7 +9,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'dates-component.js'
+    filename: 'd-calendar.js'
   },
   resolveLoader: {
     modules: [
@@ -28,7 +28,7 @@ module.exports = {
       {
         test: /.js?$/,
         loader: 'babel-loader',
-        exclude: [/node_modules/, /.t.js?$/],
+        exclude: [/node_modules/],
         query: {
           presets: ['es2015']
         }
@@ -46,24 +46,24 @@ module.exports = {
     inline: true
   },
   plugins: [
-      new ExtractTextPlugin("css/[name].css"),
+    new ExtractTextPlugin("css/[name].css"),
 
-      // new webpack.optimize.UglifyJsPlugin({
-      //   compress: {
-      //     warnings: false,
-      //     screw_ie8: true,
-      //     conditionals: true,
-      //     unused: true,
-      //     comparisons: true,
-      //     sequences: true,
-      //     dead_code: true,
-      //     evaluate: true,
-      //     join_vars: true,
-      //     if_return: true
-      //   },
-      //   output: {
-      //     comments: false
-      //   }
-      // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        join_vars: true,
+        if_return: true
+      },
+      output: {
+        comments: false
+      }
+    }),
   ]
 }

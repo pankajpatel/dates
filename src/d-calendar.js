@@ -5,7 +5,20 @@ const template = require('./templates/calendar.t');
 const monthTagTemplate = require('./templates/month.tag.t');
 
 const $find = (selector, context = document) => Array.prototype.slice.apply( context.querySelectorAll(selector) );
-
+const $append = (markup, parent) => {
+  let temp_container = document.createElement('div');
+  temp_container.innerHTML = markup;
+  while(temp_container.firstChild){
+    parent.appendChild(temp_container.firstChild);
+  }
+};
+const $prepend = (markup, parent) => {
+  let temp_container = document.createElement('div');
+  temp_container.innerHTML = markup;
+  while(temp_container.firstChild){
+    parent.insertBefore(temp_container.firstChild, parent.firstElementChild);
+  }
+};
 const directionalFunction = bool => bool ? 'add' : 'subtract';
 
 (function(window, document, undefined) {
@@ -66,26 +79,30 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
     }
     this.moveNext = (step) => {
       for (var index = 0; index < this.step; index++) {
-        let month = this.months[this.months.length - 1].add(1, 'month');
-        this.months.push(month);
-        this.monthsMap[month.format('YYYYMM')] = month;
-        let temp_container = document.createElement('div');
-        temp_container.innerHTML = monthTagTemplate(month);
-        while(temp_container.firstChild){
-          this.querySelector('.d-calendar-row').appendChild(temp_container.firstChild);
-        }
         this.navFlag++;
+        if(!this.months[this.navFlag]){
+          let month = this.months[this.months.length - 1].add(1, 'month');
+          this.months.push(month);
+          this.monthsMap[month.format('YYYYMM')] = month;
+          $append(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
+        }
         console.log(this.navFlag, `-${this.monthWidth * this.navFlag}px`);
         this.slide();
-        // console.log(month);
       }
-      // console.log(this.months);
     }
     this.movePrevious = () => {
       for (var index = 0; index < this.step; index++) {
-        this.navFlag--;
-        console.log(this.navFlag, `-${this.monthWidth * this.navFlag}px`);
-        this.slide();
+        console.log(this.navFlag)
+        if(this.navFlag == 0){
+          let month = this.months[0].subtract(1, 'month');
+          this.months.unshift(month);
+          this.monthsMap[month.format('YYYYMM')] = month;
+          $prepend(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
+        } else {
+          this.navFlag--;
+          console.log(this.navFlag, `-${this.monthWidth * this.navFlag}px`);
+          this.slide();
+        }
       }
     }
 
