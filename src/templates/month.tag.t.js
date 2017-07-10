@@ -1,1 +1,2 @@
-module.exports = month => `<d-month for-month="${month.format('YYYY-MM-DD')}"></d-month>`;
+const config = require('../config');
+module.exports = month => `<${config.monthComponent} for-month="${month.format('YYYY-MM-DD')}"></${config.monthComponent}>`;

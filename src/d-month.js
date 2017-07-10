@@ -1,4 +1,5 @@
 const moment = require('moment');
+const config = require('./config');
 const monthWeeks = require('./utils/getWeeks');
 const template = require('./templates/month.t');
 
@@ -20,7 +21,7 @@ const monthHtml = day => {
     this.innerHTML = monthHtml(date);
   };
 
-  window.CalendarMonth = document.registerElement('d-month', {
+  window.CalendarMonth = document.registerElement(config.monthComponent, {
     prototype: Month
   });
 })(window, document);

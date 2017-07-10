@@ -1,4 +1,5 @@
 const moment = require('moment');
+const config = require('./config');
 const template = require('./templates/day.t');
 
 (function(window, document, undefined) {
@@ -16,7 +17,7 @@ const template = require('./templates/day.t');
     })
   };
 
-  window.CalendarDay = document.registerElement('d-day', {
+  window.CalendarDay = document.registerElement(config.dayComponent, {
     prototype: Day
   });
 })(window, document);

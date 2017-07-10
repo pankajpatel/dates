@@ -1,29 +1,14 @@
 const moment = require('moment');
+const config = require('./config');
 const monthWeeks = require('./utils/getWeeks');
 const getMonths = require('./utils/getMonths');
 const template = require('./templates/calendar.t');
 const monthTagTemplate = require('./templates/month.tag.t');
-
-const $find = (selector, context = document) => Array.prototype.slice.apply( context.querySelectorAll(selector) );
-const $append = (markup, parent) => {
-  let temp_container = document.createElement('div');
-  temp_container.innerHTML = markup;
-  while(temp_container.firstChild){
-    parent.appendChild(temp_container.firstChild);
-  }
-};
-const $prepend = (markup, parent) => {
-  let temp_container = document.createElement('div');
-  temp_container.innerHTML = markup;
-  while(temp_container.firstChild){
-    parent.insertBefore(temp_container.firstChild, parent.firstElementChild);
-  }
-};
-const directionalFunction = bool => bool ? 'add' : 'subtract';
+const { $find, $append, $prepend } = require('./utils/dom');
 
 (function(window, document, undefined) {
-  // moment.locale('en');
-  moment.locale('de');
+  moment.locale('en');
+  // moment.locale('de');
 
   var Calendar = Object.create(HTMLElement.prototype);
 
@@ -70,6 +55,10 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
       }, 100);
     }
 
+    this.updateWidth = width => {
+      this.monthWidth = width || this.getWidth();
+      this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
+    }
     this.slideLeft = () => {
       this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
     }
@@ -149,7 +138,7 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
     });
   };
 
-  window.Calendar = document.registerElement('d-calendar', {
+  window.Calendar = document.registerElement(config.calendarComponent, {
     prototype: Calendar
   });
 })(window, document);

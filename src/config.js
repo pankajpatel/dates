@@ -1,10 +1,20 @@
-const context = 'd';
+const namespace = 'd';
 
-const dayComponent = `${context}-day`;
-const monthComponent = `${context}-month`;
+const day = `day`;
+const dayComponent = `${namespace}-${day}`;
 
-export default {
-  context,
+const month = `month`;
+const monthComponent = `${namespace}-${month}`;
+
+const calendar = `calendar`;
+const calendarComponent = `${namespace}-${calendar}`;
+
+module.exports = {
+  day,
+  month,
+  calendar,
+  namespace,
   dayComponent,
-  monthComponent
+  monthComponent,
+  calendarComponent
 }
