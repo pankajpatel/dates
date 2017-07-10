@@ -70,10 +70,6 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
       }, 100);
     }
 
-    this.updateWidth = width => {
-      this.monthWidth = width || this.getWidth();
-      this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
-    }
     this.slideLeft = () => {
       this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
     }
@@ -88,26 +84,32 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
         this.navFlag++;
         if(!this.months[this.navFlag]){
           let month = this.months[this.months.length - 1].add(1, 'month');
-          this.months.push(month);
-          this.monthsMap[month.format('YYYYMM')] = month;
-          $append(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
+          if(!this.monthsMap[month.format('YYYYMM')]) {
+            this.months.push(month);
+            this.monthsMap[month.format('YYYYMM')] = month;
+            $append(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
+          }
         }
-        console.log(this.navFlag, `-${this.monthWidth * this.navFlag}px`);
         this.slideLeft();
       }
     }
+
+    /**
+     *
+     */
     this.movePrevious = () => {
       for (var index = 0; index < this.step; index++) {
         console.log(this.navFlag)
         if(this.navFlag == 0){
           let month = this.months[0].subtract(1, 'month');
-          this.months.unshift(month);
-          this.monthsMap[month.format('YYYYMM')] = month;
-          $prepend(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
+          if(!this.monthsMap[month.format('YYYYMM')]) {
+            this.months.unshift(month);
+            this.monthsMap[month.format('YYYYMM')] = month;
+            $prepend(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
+          }
         } else {
           this.navFlag--;
-          console.log(this.navFlag, `-${this.monthWidth * this.navFlag}px`);
-          this.slide();
+          this.slideRight();
         }
       }
     }
@@ -133,20 +135,11 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
       }
     });
 
-    this.cosmetics = (direction) => {
-      let monthWidth = this.getWidth();
-      if(this.monthWidth != monthWidth){
-        this.updateWidth(monthWidth);
-
-      }
-    }
     this.querySelector('.d-calender-navigation-previous').addEventListener('click', (e) => {
       this.movePrevious();
-      this.cosmetics();
     })
     this.querySelector('.d-calender-navigation-next').addEventListener('click', (e) => {
       this.moveNext();
-      this.cosmetics();
     })
     $find('.d-calendar-day-button', this).forEach(el => {
       el.addEventListener('mouseenter', e => {

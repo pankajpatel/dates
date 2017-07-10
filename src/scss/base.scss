@@ -4,7 +4,6 @@ d-calendar {
   .hidden {
     display: none;
   }
-  font-family: system-ui;
   > div {
     border: 1px solid #ccc;
     padding-top: 58px;
@@ -15,6 +14,9 @@ d-calendar {
     * {
       box-sizing: border-box;
     }
+  }
+  .arrow {
+
   }
   .d-calendar {
     display: table;
