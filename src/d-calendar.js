@@ -74,8 +74,14 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
       this.monthWidth = width || this.getWidth();
       this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
     }
-    this.slide = () => {
+    this.slideLeft = () => {
       this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
+    }
+    this.slideRight = () => {
+      let cal = this._component.querySelector('.d-calendar');
+      cal.classList.remove('animate');
+      cal.style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
+      cal.classList.add('animate');
     }
     this.moveNext = (step) => {
       for (var index = 0; index < this.step; index++) {
@@ -87,7 +93,7 @@ const directionalFunction = bool => bool ? 'add' : 'subtract';
           $append(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
         }
         console.log(this.navFlag, `-${this.monthWidth * this.navFlag}px`);
-        this.slide();
+        this.slideLeft();
       }
     }
     this.movePrevious = () => {

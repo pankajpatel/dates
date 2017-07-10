@@ -19,7 +19,9 @@ d-calendar {
   .d-calendar {
     display: table;
     border-collapse: collapse;
-    transition: margin ease 0.2s;
+    &.animate {
+      transition: margin ease 0.2s;
+    }
   }
   .d-calendar-row {
     display: table-row;
