@@ -54,11 +54,12 @@ const { $find, $append, $prepend } = require('./utils/dom');
     this.innerHTML += template({months: this.months, monthTagTemplate});
 
     this._component = this.querySelector('.js-component');
-    this.getWidth = () => this.querySelector('d-month').getBoundingClientRect().width;
+    this.getWidth = () => this.querySelector(config.monthComponent).getBoundingClientRect().width;
     this.close = (e, force) => {
       setTimeout(() => {
         if(force || !this.querySelectorAll(':focus').length){
           this._component.classList.add('hidden');
+          this.querySelector(this.input).classList.remove('d-focused')
         }
       }, 100);
     }
@@ -114,6 +115,7 @@ const { $find, $append, $prepend } = require('./utils/dom');
     $find(this.input, this).forEach(el => {
       el.addEventListener(this.openEvent, (e) => {
         this._component.classList.remove('hidden');
+        this.querySelector(this.input).classList.add('d-focused')
         if(!this.monthWidth) {
           this.updateWidth();
         }
