@@ -19,7 +19,7 @@ module.exports = data => `<div class="d-calendar-month">
           const disabled = (day && data.month && day.month() !== data.month.month()) ? 'disabled' : '';
           let selected = day.date() == 15 ? 'selected' : '';
           let highlighted = day.date() == 18 ? 'highlighted' : '';
-          return `<td class="d-calendar-day ${disabled}"><${config.dayComponent}
+          return `<td class="d-calendar-day ${disabled} ${selected} ${highlighted}"><${config.dayComponent}
             disabled="${disabled}" ${selected} ${highlighted}
             date="${day.format('YYYY-MM-DD')}">${day.format('D')}</${config.dayComponent}></td>`}).join('')}
         </tr>`).join('')}

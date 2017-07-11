@@ -13,6 +13,7 @@ const { $find, $append, $prepend } = require('./utils/dom');
   var Calendar = Object.create(HTMLElement.prototype);
 
   Calendar.createdCallback = function() {
+    let value = null;
     this.input = this.getAttribute('on') || '.datepicker';
     this.openEvent = this.getAttribute('open-event') || 'focus';
     this.closeEvent = this.getAttribute('close-event') || 'blur';
@@ -30,13 +31,20 @@ const { $find, $append, $prepend } = require('./utils/dom');
     // Step can not tbe greater than the visible months count
     this.step = this.step > this.monthCount ? this.monthCount : this.step;
 
-    //Set default month element's width
+    // Set default month element's width
     this.monthWidth = 0;
 
-    //Flag for the Navigation of months
+    // Flag for the Navigation of months
     this.navFlag = 0;
 
-    let value = this.querySelector(this.input).value;
+    if( this.range ) {
+      value = {
+        from: this.querySelector('.from').value,
+        to: this.querySelector('.to').value
+      };
+    } else {
+      value = this.querySelector(this.input).value;
+    }
 
     let conf = getMonths(this.monthCount, value);
 
