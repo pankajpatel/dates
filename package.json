@@ -5,7 +5,7 @@
   "repository": "git@github.com:pankajpatel/dates.git",
   "author": "Pankaj Patel <patel.pankaj@live.in>",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "watch": "webpack --progress --watch",
     "build": "webpack --progress --production"
   },
@@ -24,6 +24,7 @@
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.13.2",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack_api": "github:nogizhopaboroda/ascesis-storybook"
   }
 }

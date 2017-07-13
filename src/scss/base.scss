@@ -1,10 +1,12 @@
 $d-day-box-size: 35px;
 
 d-calendar {
+  position: relative;
   .hidden {
     display: none;
   }
   > div {
+    left: 0;
     border: 1px solid #ccc;
     padding-top: 58px;
     position: absolute;
@@ -16,7 +18,19 @@ d-calendar {
     }
   }
   .arrow {
-
+    display: block;
+    width: 1px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ccc;
+    border-top: 0;
+    &:before {
+      width: 1px;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 9px solid white;
+      border-top: 0;
+    }
   }
   .d-calendar {
     display: table;
