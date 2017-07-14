@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "watch": "webpack --progress --watch",
-    "build": "webpack --progress --production"
+    "build": "webpack --progress --production",
+    "story": "node ./node_modules/webpack_api/server.js"
   },
   "dependencies": {
     "moment": "^2.18.1",

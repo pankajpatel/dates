@@ -1,4 +1,4 @@
-const {storyOf} = require('../../../ascesis-storybook/js/story');
+const {storyOf} = require('webpack_api/js/story');
 
 require('../index')
 
