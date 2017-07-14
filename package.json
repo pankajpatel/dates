@@ -8,13 +8,14 @@
   "scripts": {
     "watch": "webpack --progress --watch",
     "build": "webpack --progress --production",
-    "story": "node ./node_modules/webpack_api/server.js"
+    "story": "ascesis-storybook"
   },
   "dependencies": {
     "moment": "^2.18.1",
     "webcomponentsjs": "^1.0.2"
   },
   "devDependencies": {
+    "ascesis-storybook": "github:nogizhopaboroda/ascesis-storybook",
     "babel": "^6.23.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -25,7 +26,6 @@
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.13.2",
-    "webpack": "^2.2.1",
-    "webpack_api": "github:nogizhopaboroda/ascesis-storybook"
+    "webpack": "^2.2.1"
   }
 }
