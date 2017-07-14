@@ -1,4 +1,4 @@
-const {storiesOf} = require('ascesis-storybook/story');
+const {storiesOf} = require('ascesis-storybook');
 
 require('../index')
 
