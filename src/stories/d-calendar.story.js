@@ -1,8 +1,8 @@
-const {storyOf} = require('webpack_api/js/story');
+const {storiesOf} = require('ascesis-storybook/story');
 
 require('../index')
 
-storyOf('Calendar')
+storiesOf('Calendar')
   .add('default', () => `
     <label>Date of Birth</label>
     <d-calendar>
@@ -24,7 +24,7 @@ storyOf('Calendar')
     <small>Shows 2 months and stps over two months</small>
   `)
 
-storyOf('Custom Calendar')
+storiesOf('Custom Calendar')
   .add('default', () => `
     <label>Date of Birth</label>
     <d-calendar on=".dob">
