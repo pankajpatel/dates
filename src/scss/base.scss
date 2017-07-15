@@ -1,5 +1,3 @@
-$d-day-box-size: 35px;
-
 d-calendar {
   position: relative;
   .hidden {
@@ -8,7 +6,6 @@ d-calendar {
   > div {
     left: 0;
     border: 1px solid #ccc;
-    padding-top: 58px;
     position: absolute;
     background: white;
     overflow: hidden;
@@ -42,74 +39,7 @@ d-calendar {
   .d-calendar-row {
     display: table-row;
   }
-  d-month {
-    display: table-cell;
-    // border-right: 1px solid #ccc;
-    &:last-child,
-    &[months="1"] {
-      border: 0
-    }
-  }
-  .d-calendar-month {
-    padding: 10px;
-    table {
-      border-collapse: collapse;
-      position: relative
-    }
-    caption {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 3px;
-      margin-bottom: 9px;
-      position: absolute;
-      bottom: 100%;
-      width: 100%;
-      ul {
-        color: #ddd;
-        list-style: none;
-        padding: 0;
-        margin: 10px 0 5px;
-        li {
-          display: block;
-          float: left;
-          width: calc( 100% / 7 );
-          text-align: center;
-        }
-      }
-    }
-  }
-  .d-calendar-day {
-    border: 1px solid #e4e4e4;
-    padding: 0;
-    width: $d-day-box-size;
-    height: $d-day-box-size;
-    box-sizing: border-box;
-    .selected {
-      background: rgba(150, 150, 150, 0.5);
-      color: #fff;
-    }
-    .d-day-selected {
-      background: rgba(100, 100, 100, 0.2);
-      color: #fff;
-    }
-    .d-day-highlighted {
-      background: rgba(100, 100, 100, 0.5);
-      color: #fff;
-    }
-    button {
-      display: block;
-      width: $d-day-box-size - 1;
-      height: $d-day-box-size - 1;
-      font-size: 1em;
-      border: 0;
-      background: transparent;
-      &[disabled]{
-        color: #dedede;
-      }
-      &:not([disabled]):hover {
-        background: #efefef;
-      }
-    }
-  }
+
   .d-calender-navigation-next,
   .d-calender-navigation-previous {
     position: absolute;

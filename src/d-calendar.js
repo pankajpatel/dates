@@ -6,6 +6,8 @@ const template = require('./templates/calendar.t');
 const monthTagTemplate = require('./templates/month.tag.t');
 const { $find, $append, $prepend } = require('./utils/dom');
 
+require('./d-month');
+
 (function(window, document, undefined) {
   moment.locale('en');
   // moment.locale('de');

@@ -2,12 +2,14 @@ const moment = require('moment');
 const config = require('./config');
 const template = require('./templates/day.t');
 
+require('./scss/d-day.scss');
+
 (function(window, document, undefined) {
 
   var Day = Object.create(HTMLElement.prototype);
 
   Day.createdCallback = function() {
-    this.day = moment(this.getAttribute('date'));
+    this.day = moment(this.getAttribute('date') || new Date);
     this.outerHTML = template({
       day: this.day,
       selected: Boolean(this.getAttribute('selected')),

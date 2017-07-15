@@ -3,6 +3,9 @@ const config = require('./config');
 const monthWeeks = require('./utils/getWeeks');
 const template = require('./templates/month.t');
 
+require('./d-day');
+require('./scss/d-month.scss');
+
 const monthFormat = 'MMMM YYYY';
 
 const monthHtml = day => {
@@ -16,8 +19,8 @@ const monthHtml = day => {
 
   var Month = Object.create(HTMLElement.prototype);
 
-  Month.createdCallback = function(d) {
-    let date = d || this.getAttribute('for-month')
+  Month.createdCallback = function() {
+    let date = this.getAttribute('for-month') || moment();
     this.innerHTML = monthHtml(date);
   };
 

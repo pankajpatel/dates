@@ -1,0 +1,36 @@
+d-month {
+  display: table-cell;
+  padding-top: 58px;
+  // border-right: 1px solid #ccc;
+  &:last-child,
+  &[months="1"] {
+    border: 0
+  }
+  .d-calendar-month {
+    padding: 10px;
+    table {
+      border-collapse: collapse;
+      position: relative
+    }
+    caption {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 3px;
+      margin-bottom: 9px;
+      position: absolute;
+      bottom: 100%;
+      width: 100%;
+      ul {
+        color: #ddd;
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 5px;
+        li {
+          display: block;
+          float: left;
+          width: calc( 100% / 7 );
+          text-align: center;
+        }
+      }
+    }
+  }
+}
