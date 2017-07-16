@@ -1,8 +1,8 @@
 const moment = require('moment');
-const config = require('./config');
-const template = require('./templates/day.t');
+const config = require('../config');
+const template = require('./day.t');
 
-require('./scss/d-day.scss');
+require('./d-day.scss');
 
 (function(window, document, undefined) {
 

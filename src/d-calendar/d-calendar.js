@@ -1,12 +1,13 @@
 const moment = require('moment');
-const config = require('./config');
-const monthWeeks = require('./utils/getWeeks');
-const getMonths = require('./utils/getMonths');
-const template = require('./templates/calendar.t');
-const monthTagTemplate = require('./templates/month.tag.t');
-const { $find, $append, $prepend } = require('./utils/dom');
+const config = require('../config');
+const monthWeeks = require('../utils/getWeeks');
+const getMonths = require('../utils/getMonths');
+const template = require('./calendar.t');
+const monthTagTemplate = require('./month.tag.t');
+const { $find, $append, $prepend } = require('../utils/dom');
 
-require('./d-month');
+require('./d-calendar.scss');
+require('../d-month/d-month');
 
 (function(window, document, undefined) {
   moment.locale('en');

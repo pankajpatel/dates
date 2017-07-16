@@ -1,10 +1,10 @@
 const moment = require('moment');
-const config = require('./config');
-const monthWeeks = require('./utils/getWeeks');
-const template = require('./templates/month.t');
+const config = require('../config');
+const monthWeeks = require('../utils/getWeeks');
+const template = require('./month.t');
 
-require('./d-day');
-require('./scss/d-month.scss');
+require('../d-day/d-day');
+require('./d-month.scss');
 
 const monthFormat = 'MMMM YYYY';
 
