@@ -12,11 +12,11 @@
     "story": "ascesis-storybook"
   },
   "dependencies": {
-    "moment": "^2.18.1",
-    "webcomponentsjs": "^1.0.2"
+    "@webcomponents/custom-elements": "^1.0.0",
+    "moment": "^2.18.1"
   },
   "devDependencies": {
-    "ascesis-storybook": "github:nogizhopaboroda/ascesis-storybook",
+    "ascesis-storybook": "holidaypirates/ascesis-storybook",
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.21.0",
