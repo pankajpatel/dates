@@ -5,7 +5,7 @@ const LogTypes = {
   error: 'ERROR',
 };
 
-function createMockedConsole() {
+function createMockedConsole(logCallback) {
   const history = [];
   let groupDepth = 0;
 
@@ -15,7 +15,9 @@ function createMockedConsole() {
   }
 
   function log(logType, ...msgs) {
-    history.push({ [prefix(logType)]: msgs });
+    let data = { [prefix(logType)]: msgs };
+    history.push(data);
+    logCallback(data);
   }
 
   function group(...title) {
@@ -46,7 +48,7 @@ function createMockedConsole() {
 
 const inspectorStyles = `
   .inspector-json {
-    padding: 25px;
+    padding: 0px 9px;
     font: 13px/18px Consolas, monospace;
     color: rgb( 75, 75, 75 );
   }
