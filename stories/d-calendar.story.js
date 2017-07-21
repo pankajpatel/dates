@@ -1,14 +1,18 @@
 const {storiesOf} = require('ascesis-storybook');
 
+const {withReadme} = require('../.storybook/readme-plugin');
+
+const {withConsole} = require('../.storybook/console-plugin');
+
 require('../src/d-calendar/d-calendar')
 
 storiesOf('Calendar')
-  .add('default', () => `
+  .add('default', withConsole(withReadme('Default', () => `
     <label>Date of Birth</label>
     <d-calendar>
       <input type="text" class="datepicker" placeholder="DoB" />
     </d-calendar>
-  `)
+  `)))
   .add('Months: 2, Step: 1', () => `
     <label>Date of Birth</label>
     <d-calendar on=".datepicker" open-event="focus" close-event="blur" months="2" step="1">
