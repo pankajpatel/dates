@@ -1,6 +1,6 @@
 const {storiesOf} = require('ascesis-storybook');
 
-require('./d-calendar')
+require('../src/d-calendar/d-calendar')
 
 storiesOf('Calendar')
   .add('default', () => `

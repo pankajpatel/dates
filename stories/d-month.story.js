@@ -1,6 +1,6 @@
 const {storiesOf} = require('ascesis-storybook');
 
-require('./d-month')
+require('../src/d-month/d-month');
 
 storiesOf('Month')
   .add('default', () => `

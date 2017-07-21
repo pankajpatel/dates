@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   // devtool: 'eval-source-map',
   entry: {
-    app: path.join(__dirname, 'src' , 'index.js')
+    app: path.join(__dirname, 'src' , 'd-calendar/d-calendar.js')
   },
   output: {
     path: path.join(__dirname, 'dist'),

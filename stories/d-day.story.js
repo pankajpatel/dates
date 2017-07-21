@@ -1,6 +1,6 @@
 const {storiesOf} = require('ascesis-storybook');
 
-require('./d-day')
+require('../src/d-day/d-day');
 
 storiesOf('Day')
   .add('default', () => `
