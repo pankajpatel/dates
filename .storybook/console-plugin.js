@@ -1,6 +1,6 @@
-const AddonsApi = require('ascesis-storybook/js/addons');
-const InspectorJSON = require('Inspector-JSON');
-const {createMockedConsole, inspectorStyles} = require('./mockedConsole');
+require('inspector-component/lib');
+const AddonsApi = require('ascesis-storybook/addons.js');
+const {createMockedConsole} = require('./mockedConsole');
 
 const mockedConsole = createMockedConsole((data) => {
   AddonsApi.getChannel().emit('plugin-console', data);
@@ -8,26 +8,25 @@ const mockedConsole = createMockedConsole((data) => {
 
 customElements.define('console-manager', class extends HTMLElement {
   connectedCallback(){
-    this.inspector = new InspectorJSON({
-      element: 'console',
-      json: JSON.stringify(mockedConsole.history()),
-      collapsed: false
-    });
     this.history = [];
+    this.inspector = this.querySelector('inspector-component');
     AddonsApi.getChannel().on('plugin-console', (data) => {
-      this.history.unshift(data['LOG'][0])
-      this.inspector.view(JSON.stringify(this.history))
+      if(data && data.LOG) {
+        this.history.unshift(data['LOG'][0])
+        this.inspector.log(this.history[0])
+        window._console.log(this.history[0])
+      }
     })
   }
 });
 
 AddonsApi.addPanel('CONSOLE', () => `<console-manager>
-  <style>${inspectorStyles}</style>
-  <div id="console"></div>
+  <div id="console"><inspector-component></inspector-component></div>
 </console-manager>`);
 
 function withConsole(render){
-  console = mockedConsole;
+  window._console = window.console;
+  window.console = mockedConsole;
   return (story) => {
     AddonsApi.getChannel().emit('plugin-console');
     return (render || story)();

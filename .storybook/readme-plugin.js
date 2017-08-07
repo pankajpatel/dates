@@ -1,4 +1,4 @@
-const AddonsApi = require('ascesis-storybook/js/addons');
+const AddonsApi = require('ascesis-storybook/addons');
 
 
 customElements.define('readme-manager', class extends HTMLElement {

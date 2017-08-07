@@ -1,3 +1,3 @@
 module.exports = {
-  storiesMask: '**/stories/*'
+  stories: '**/stories/*.story.js'
 }
