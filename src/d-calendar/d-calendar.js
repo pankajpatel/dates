@@ -12,7 +12,7 @@ require('../d-month/d-month');
 (function(window, document, undefined) {
   moment.locale('en');
   // moment.locale('de');
-  console.log('Story')
+
   var Calendar = Object.create(HTMLElement.prototype);
 
   Calendar.createdCallback = function() {

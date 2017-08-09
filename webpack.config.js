@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   // devtool: 'eval-source-map',
   entry: {
-    app: path.join(__dirname, 'src' , 'd-calendar/d-calendar.js')
+    app: ['babel-polyfill', path.join(__dirname, 'src' , 'd-calendar/d-calendar.js')]
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -30,7 +30,8 @@ module.exports = {
         loader: 'babel-loader',
         exclude: [/node_modules/],
         query: {
-          presets: ['es2015']
+          presets: ['es2015', 'stage-0'],
+          plugins: ["transform-object-rest-spread"]
         }
       }, {
         test: /.scss?$/,
