@@ -3,7 +3,7 @@ const {storiesOf} = require('ascesis-storybook');
 const {withConsole} = require('../.storybook/console-plugin');
 
 require('../src/d-calendar/d-calendar')
-debugger
+
 storiesOf('Calendar')
   .add('default', withConsole(() => `
     <label>Date of Birth</label>

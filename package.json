@@ -16,7 +16,7 @@
     "moment": "^2.18.1"
   },
   "devDependencies": {
-    "ascesis-storybook": "holidaypirates/ascesis-storybook#593aa3f42b8e1a7436bbcf2c1d4e3c01ade7d593",
+    "ascesis-storybook": "holidaypirates/ascesis-storybook",
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.21.0",

@@ -125,9 +125,9 @@ arrify@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
-ascesis-storybook@holidaypirates/ascesis-storybook#593aa3f42b8e1a7436bbcf2c1d4e3c01ade7d593:
+ascesis-storybook@holidaypirates/ascesis-storybook:
   version "0.1.0"
-  resolved "https://codeload.github.com/holidaypirates/ascesis-storybook/tar.gz/593aa3f42b8e1a7436bbcf2c1d4e3c01ade7d593"
+  resolved "https://codeload.github.com/holidaypirates/ascesis-storybook/tar.gz/e4dc531a961c319039034acb45acfd2c71cd5b54"
   dependencies:
     ascesis "git+https://github.com/holidaypirates/ascesis.git"
     babel-plugin-transform-object-rest-spread "^6.23.0"
@@ -142,9 +142,9 @@ ascesis-storybook@holidaypirates/ascesis-storybook#593aa3f42b8e1a7436bbcf2c1d4e3
     webpack "^3.1.0"
     webpack-dev-middleware "^1.11.0"
 
-ascesis-storybook@holidaypirates/ascesis-storybook#e96a5927e947e28666c057dd93caab9a08f9fe3f:
+ascesis-storybook@holidaypirates/ascesis-storybook#593aa3f42b8e1a7436bbcf2c1d4e3c01ade7d593:
   version "0.1.0"
-  resolved "https://codeload.github.com/holidaypirates/ascesis-storybook/tar.gz/e96a5927e947e28666c057dd93caab9a08f9fe3f"
+  resolved "https://codeload.github.com/holidaypirates/ascesis-storybook/tar.gz/593aa3f42b8e1a7436bbcf2c1d4e3c01ade7d593"
   dependencies:
     ascesis "git+https://github.com/holidaypirates/ascesis.git"
     commander "^2.11.0"
@@ -900,10 +900,6 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.4.1, bluebird@^3.4.7:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
-
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.6"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.6.tgz#53344adb14617a13f6e8dd2ce28905d1c0ba3215"
@@ -1536,10 +1532,6 @@ enhanced-resolve@^3.3.0:
     object-assign "^4.0.1"
     tapable "^0.2.5"
 
-err-code@^1.0.0:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/err-code/-/err-code-1.1.2.tgz#06e0116d3028f6aef4806849eb0ea6a748ae6960"
-
 errno@^0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.4.tgz#b896e23a9e5e8ba33871fc996abd3635fc9a1c7d"
@@ -1706,7 +1698,7 @@ express@^4.15.3:
     utils-merge "1.0.0"
     vary "~1.1.1"
 
-extend@^3.0.0, extend@~3.0.0:
+extend@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
 
@@ -1736,25 +1728,6 @@ fast-deep-equal@^1.0.0:
 fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
-
-file-js@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/file-js/-/file-js-0.3.0.tgz#fab46bf782346c9294499f1f0d2ad07d838f25d1"
-  dependencies:
-    bluebird "^3.4.7"
-    minimatch "^3.0.3"
-    proper-lockfile "^1.2.0"
-
-filehound@^1.16.2:
-  version "1.16.2"
-  resolved "https://registry.yarnpkg.com/filehound/-/filehound-1.16.2.tgz#e72aefa5587723e2e299075d147e8b6b578c73d0"
-  dependencies:
-    bluebird "^3.4.1"
-    file-js "0.3.0"
-    lodash "^4.13.1"
-    minimatch "^3.0.2"
-    moment "^2.14.1"
-    unit-compare "^1.0.1"
 
 filename-regex@^2.0.0:
   version "2.0.0"
@@ -2404,7 +2377,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.2.0:
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.2.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -2533,7 +2506,7 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
 
-minimatch@^3.0.0, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@~3.0.2:
+minimatch@^3.0.0, minimatch@^3.0.2, minimatch@~3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.3.tgz#2a4e4090b96b2db06a9d7df01055a62a77c9b774"
   dependencies:
@@ -2566,7 +2539,7 @@ mixin-object@^2.0.1:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.14.1, moment@^2.18.1:
+moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
@@ -3152,15 +3125,6 @@ process@^0.11.0:
   version "0.11.9"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.9.tgz#7bd5ad21aa6253e7da8682264f1e11d11c0318c1"
 
-proper-lockfile@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/proper-lockfile/-/proper-lockfile-1.2.0.tgz#ceff5dd89d3e5f10fb75e1e8e76bc75801a59c34"
-  dependencies:
-    err-code "^1.0.0"
-    extend "^3.0.0"
-    graceful-fs "^4.1.2"
-    retry "^0.10.0"
-
 proxy-addr@~1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-1.1.4.tgz#27e545f6960a44a627d9b44467e35c1b6b4ce2f3"
@@ -3399,10 +3363,6 @@ require-directory@^2.1.1:
 require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
-
-retry@^0.10.0:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/retry/-/retry-0.10.1.tgz#e76388d217992c252750241d3d3956fed98d8ff4"
 
 right-align@^0.1.1:
   version "0.1.3"
@@ -3811,12 +3771,6 @@ uniqid@^4.0.0:
 uniqs@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/uniqs/-/uniqs-2.0.0.tgz#ffede4b36b25290696e6e165d4a59edb998e6b02"
-
-unit-compare@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/unit-compare/-/unit-compare-1.0.1.tgz#0c7459f0e5bf53637ea873ca3cee18de2eeca386"
-  dependencies:
-    moment "^2.14.1"
 
 unpipe@~1.0.0:
   version "1.0.0"
