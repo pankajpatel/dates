@@ -1,6 +1,6 @@
 require('inspector-component/lib');
 const AddonsApi = require('ascesis-storybook/addons.js');
-const {createMockedConsole} = require('./mockedConsole');
+const createMockedConsole = require('./mockedConsole');
 
 const mockedConsole = createMockedConsole((data) => {
   AddonsApi.getChannel().emit('plugin-console', data);
