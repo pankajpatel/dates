@@ -169,3 +169,4 @@ class Calendar extends HTMLElement {
   }
 }
 
+customElements.define(config.calendarComponent, Calendar);

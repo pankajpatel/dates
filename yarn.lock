@@ -126,23 +126,6 @@ ascesis-storybook@holidaypirates/ascesis-storybook:
   resolved "https://codeload.github.com/holidaypirates/ascesis-storybook/tar.gz/e4dc531a961c319039034acb45acfd2c71cd5b54"
   dependencies:
     ascesis "git+https://github.com/holidaypirates/ascesis.git"
-    babel-plugin-transform-object-rest-spread "^6.23.0"
-    babel-preset-es2015 "^6.24.1"
-    babel-preset-stage-0 "^6.24.1"
-    commander "^2.11.0"
-    document-register-element "^1.5.0"
-    express "^4.15.3"
-    glob "^7.1.2"
-    glob-promise "^3.1.0"
-    split.js "^1.3.5"
-    webpack "^3.1.0"
-    webpack-dev-middleware "^1.11.0"
-
-ascesis-storybook@holidaypirates/ascesis-storybook#593aa3f42b8e1a7436bbcf2c1d4e3c01ade7d593:
-  version "0.1.0"
-  resolved "https://codeload.github.com/holidaypirates/ascesis-storybook/tar.gz/593aa3f42b8e1a7436bbcf2c1d4e3c01ade7d593"
-  dependencies:
-    ascesis "git+https://github.com/holidaypirates/ascesis.git"
     commander "^2.11.0"
     express "^4.15.3"
     filehound "^1.16.2"
@@ -1468,7 +1451,7 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-document-register-element@^1.7.0:
+document-register-element@^1.5.0, document-register-element@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/document-register-element/-/document-register-element-1.7.0.tgz#d971b62755294b94fcd658b1d8533b0366c852e9"
 

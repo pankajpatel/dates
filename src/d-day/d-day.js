@@ -1,14 +1,16 @@
+require('document-register-element');
 const moment = require('moment');
 const config = require('../config');
 const template = require('./day.t');
 
 require('./d-day.scss');
 
-(function(window, document, undefined) {
+class Day extends HTMLElement {
+  constructor() {
+    super();
+  }
 
-  var Day = Object.create(HTMLElement.prototype);
-
-  Day.createdCallback = function() {
+  conncetedCallback() {
     this.day = moment(this.getAttribute('date') || new Date);
     this.outerHTML = template({
       day: this.day,
@@ -17,9 +19,7 @@ require('./d-day.scss');
       class: this.getAttribute('class') || '',
       disabled: this.getAttribute('disabled'),
     })
-  };
+  }
+}
 
-  window.CalendarDay = document.registerElement(config.dayComponent, {
-    prototype: Day
-  });
-})(window, document);
+customElements.define(config.dayComponent, Day);

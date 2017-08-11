@@ -1,3 +1,4 @@
+require('document-register-element');
 const moment = require('moment');
 const config = require('../config');
 const monthWeeks = require('../utils/getWeeks');
@@ -6,26 +7,24 @@ const template = require('./month.t');
 require('../d-day/d-day');
 require('./d-month.scss');
 
-const monthFormat = 'MMMM YYYY';
+const monthTitleFormat = 'MMMM YYYY';
 
 const monthHtml = day => {
   const month = moment(day)
   const weeks = monthWeeks(month, true);
-  const monthTitle = month.format(monthFormat);
+  const monthTitle = month.format(monthTitleFormat);
   return template({moment, month, weeks, monthTitle});
 }
 
-(function(window, document, undefined) {
+class Month extends HTMLElement {
+  constructor() {
+    super();
+  }
 
-  var Month = Object.create(HTMLElement.prototype);
-
-  Month.createdCallback = function() {
+  connectedCallback() {
     let date = this.getAttribute('for-month') || moment();
     this.innerHTML = monthHtml(date);
-  };
+  }
+}
 
-  window.CalendarMonth = document.registerElement(config.monthComponent, {
-    prototype: Month
-  });
-})(window, document);
-
+customElements.define(config.monthComponent, Month);
