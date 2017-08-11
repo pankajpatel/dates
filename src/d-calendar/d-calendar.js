@@ -1,3 +1,4 @@
+require('document-register-element');
 const moment = require('moment');
 const config = require('../config');
 const monthWeeks = require('../utils/getWeeks');
@@ -9,13 +10,13 @@ const { $find, $append, $prepend } = require('../utils/dom');
 require('./d-calendar.scss');
 require('../d-month/d-month');
 
-(function(window, document, undefined) {
-  moment.locale('en');
-  // moment.locale('de');
+moment.locale('en');
 
-  var Calendar = Object.create(HTMLElement.prototype);
-
-  Calendar.createdCallback = function() {
+class Calendar extends HTMLElement {
+  constructor(){
+    super()
+  }
+  connectedCallback() {
     let value = null;
     this.input = this.getAttribute('on') || '.datepicker';
     this.openEvent = this.getAttribute('open-event') || 'focus';
@@ -54,10 +55,9 @@ require('../d-month/d-month');
     this.months = conf.months;
     this.monthsMap = conf.map;
     // this.activeMonths = [moment(new Date).format['YYYYMM']];
-    this.innerHTML += template({months: this.months, monthTagTemplate});
+    this.render();
 
-    this._component = this.querySelector('.js-component');
-    this.getWidth = () => this.querySelector(config.monthComponent).getBoundingClientRect().width;
+
     this.close = (e, force) => {
       setTimeout(() => {
         if(force || !this.querySelectorAll(':focus').length){
@@ -67,10 +67,6 @@ require('../d-month/d-month');
       }, 100);
     }
 
-    this.updateWidth = width => {
-      this.monthWidth = width || this.getWidth();
-      this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
-    }
     this.slideLeft = () => {
       this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
     }
@@ -80,7 +76,11 @@ require('../d-month/d-month');
       cal.style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
       cal.classList.add('animate');
     }
-    this.moveNext = (step) => {
+
+    /**
+     * Move the calendar ahead
+     */
+    this.moveNext = () => {
       for (var index = 0; index < this.step; index++) {
         this.navFlag++;
         if(!this.months[this.navFlag]){
@@ -96,7 +96,7 @@ require('../d-month/d-month');
     }
 
     /**
-     *
+     * Move the calendar behind
      */
     this.movePrevious = () => {
       for (var index = 0; index < this.step; index++) {
@@ -113,6 +113,23 @@ require('../d-month/d-month');
           this.slideRight();
         }
       }
+    }
+
+    this.bindings();
+  }
+
+  render() {
+    this.innerHTML += template({months: this.months, monthTagTemplate});
+    this._component = this.querySelector('.js-component');
+  }
+
+  bindings() {
+
+    this.getWidth = () => this.querySelector(config.monthComponent).getBoundingClientRect().width;
+
+    this.updateWidth = width => {
+      this.monthWidth = width || this.getWidth();
+      this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
     }
 
     $find(this.input, this).forEach(el => {
@@ -149,9 +166,6 @@ require('../d-month/d-month');
         this.hoveredDate = e.target.value;
       })
     });
-  };
+  }
+}
 
-  window.Calendar = document.registerElement(config.calendarComponent, {
-    prototype: Calendar
-  });
-})(window, document);
