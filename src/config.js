@@ -9,12 +9,21 @@ const monthComponent = `${namespace}-${month}`;
 const calendar = `calendar`;
 const calendarComponent = `${namespace}-${calendar}`;
 
+const rangePicker = `rangepicker`;
+const rangePickerComponent = `${namespace}-${rangePicker}`;
+
 module.exports = {
-  day,
-  month,
-  calendar,
   namespace,
+
+  day,
   dayComponent,
+
+  month,
   monthComponent,
-  calendarComponent
+
+  calendar,
+  calendarComponent,
+
+  rangePicker,
+  rangePickerComponent,
 }

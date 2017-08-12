@@ -3,7 +3,8 @@ d-calendar {
   .hidden {
     display: none;
   }
-  > div {
+  .d-calendar-popup {
+    margin-top: 2px;
     left: 0;
     border: 1px solid #ccc;
     position: absolute;
@@ -16,13 +17,16 @@ d-calendar {
   }
   .arrow {
     display: block;
-    width: 1px;
+    margin-left: 5px;
+    position: relative;
+    bottom: -2px;
+    width: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-bottom: 10px solid #ccc;
     border-top: 0;
     &:before {
-      width: 1px;
+      width: 0;
       border-left: 9px solid transparent;
       border-right: 9px solid transparent;
       border-bottom: 9px solid white;

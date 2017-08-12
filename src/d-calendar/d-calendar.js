@@ -57,7 +57,6 @@ class Calendar extends HTMLElement {
     // this.activeMonths = [moment(new Date).format['YYYYMM']];
     this.render();
 
-
     this.close = (e, force) => {
       setTimeout(() => {
         if(force || !this.querySelectorAll(':focus').length){
@@ -121,15 +120,15 @@ class Calendar extends HTMLElement {
   render() {
     this.innerHTML += template({months: this.months, monthTagTemplate});
     this._component = this.querySelector('.js-component');
+    this._popup = this._component.querySelector('.d-calendar-popup');
   }
 
   bindings() {
-
     this.getWidth = () => this.querySelector(config.monthComponent).getBoundingClientRect().width;
 
     this.updateWidth = width => {
       this.monthWidth = width || this.getWidth();
-      this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
+      this._popup.style.width = (this.monthWidth * this.monthCount) + 'px';
     }
 
     $find(this.input, this).forEach(el => {
@@ -146,6 +145,8 @@ class Calendar extends HTMLElement {
       if(e.target.classList.contains('d-calendar-day-button')){
         this.value = e.target.value;
         console.log(this.value);
+        // Unselect the selected date
+        this.querySelector('.selected').classList.remove('selected');
         e.target.classList.add('selected');
         // this.close(e, true);
         $find(this.input, this).forEach(el => {
@@ -164,6 +165,11 @@ class Calendar extends HTMLElement {
       el.addEventListener('mouseenter', e => {
 
         this.hoveredDate = e.target.value;
+        console.log(`hover ${this.hoveredDate}`)
+      })
+      el.addEventListener('mouseleave', e => {
+
+        this.hoveredDate = null;
       })
     });
   }

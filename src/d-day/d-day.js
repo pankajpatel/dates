@@ -10,7 +10,7 @@ class Day extends HTMLElement {
     super();
   }
 
-  conncetedCallback() {
+  connectedCallback() {
     this.day = moment(this.getAttribute('date') || new Date);
     this.outerHTML = template({
       day: this.day,
