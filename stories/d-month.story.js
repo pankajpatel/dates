@@ -1,11 +1,12 @@
+const config = require('../src/config');
 const {storiesOf} = require('ascesis-storybook');
 
 require('../src/d-month/d-month');
 
 storiesOf('Month')
   .add('default', () => `
-    <d-month></d-month>
+    <${config.monthComponent}></${config.monthComponent}>
   `)
   .add('pivoted', () => `
-    <d-month for-month="2018-01-01"></d-month>
+    <${config.monthComponent} for-month="2018-01-01"></${config.monthComponent}>
   `)

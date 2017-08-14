@@ -3,7 +3,21 @@ d-calendar {
   .hidden {
     display: none;
   }
-  > div {
+  &[mode='static'] {
+    display: block;
+    .js-component {
+      display: inline-block !important;
+      position: relative;
+      .arrow {
+        display: none;
+      }
+      .d-calendar-popup{
+        position: static;
+      }
+    }
+  }
+  .d-calendar-popup {
+    margin-top: 2px;
     left: 0;
     border: 1px solid #ccc;
     position: absolute;
@@ -16,13 +30,22 @@ d-calendar {
   }
   .arrow {
     display: block;
-    width: 1px;
+    margin-left: 10px;
+    position: relative;
+    bottom: -2px;
+    width: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-bottom: 10px solid #ccc;
     border-top: 0;
     &:before {
-      width: 1px;
+      content: '';
+      display: block;
+      top: 2px;
+      left: -9px;
+      z-index: 10;
+      position: absolute;
+      width: 0;
       border-left: 9px solid transparent;
       border-right: 9px solid transparent;
       border-bottom: 9px solid white;

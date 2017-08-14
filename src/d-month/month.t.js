@@ -16,12 +16,22 @@ module.exports = data => `<div class="d-calendar-month">
     <tbody>
       ${data.weeks.map(week => `<tr>
         ${week.map(day => {
-          const disabled = (day && data.month && day.month() !== data.month.month()) ? 'disabled' : '';
+          let disabled = '';
+          let outOfMonth = '';
+          if(day && data.month && day.month() !== data.month.month()){
+            disabled = 'disabled';
+            outOfMonth = 'out-of-month';
+          }
           let selected = day.date() == 15 ? 'selected' : '';
           let highlighted = day.date() == 18 ? 'highlighted' : '';
-          return `<td class="d-calendar-day ${disabled} ${selected} ${highlighted}"><${config.dayComponent}
-            disabled="${disabled}" ${selected} ${highlighted}
-            date="${day.format('YYYY-MM-DD')}">${day.format('D')}</${config.dayComponent}></td>`}).join('')}
+          let d = day.format('YYYY-MM-DD');
+          return `<td class="d-calendar-day
+            ${disabled} ${selected} ${highlighted}" date="${d}"
+            ><${config.dayComponent}
+              ${disabled} ${selected} ${highlighted}
+              date="${d}" ${outOfMonth}
+              >${day.format('D')}</${config.dayComponent}
+            ></td>`}).join('')}
         </tr>`).join('')}
     </tbody>
   </table>
