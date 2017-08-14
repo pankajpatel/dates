@@ -1,5 +1,5 @@
-module.exports = data => `<div class="js-component hidden">
-  <div class="arrow"></div>
+module.exports = data => `<div class="js-component ${data.mode === data.modes.input ? 'hidden' : ''}">
+  ${data.mode === data.modes.input ? `<div class="arrow"></div>` : ''}
   <div class="d-calendar-popup">
     <div class="d-calendar animate">
       <button type="button" class="d-calender-navigation-previous">&lArr;</button>

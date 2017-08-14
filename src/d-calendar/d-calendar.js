@@ -10,6 +10,12 @@ const { $find, $append, $prepend } = require('../utils/dom');
 require('./d-calendar.scss');
 require('../d-month/d-month');
 
+export const MODES = {
+  input: 'input',
+  static: 'static',
+};
+export const DEFAULT_MODE = MODES.input;
+
 moment.locale('en');
 
 class Calendar extends HTMLElement {
@@ -17,10 +23,14 @@ class Calendar extends HTMLElement {
     super()
   }
   connectedCallback() {
+    this.moment = moment;
     let value = null;
     this.input = this.getAttribute('on') || '.datepicker';
     this.openEvent = this.getAttribute('open-event') || 'focus';
     this.closeEvent = this.getAttribute('close-event') || 'blur';
+
+    // Mode of Calendar
+    this.mode = this.getAttribute('mode') || DEFAULT_MODE;
 
     // Is the calendar used as range?
     this.range = this.hasAttribute('range');
@@ -41,106 +51,117 @@ class Calendar extends HTMLElement {
     // Flag for the Navigation of months
     this.navFlag = 0;
 
-    if( this.range ) {
-      value = {
-        from: this.querySelector('.from').value,
-        to: this.querySelector('.to').value
-      };
-    } else {
-      value = this.querySelector(this.input).value;
+    if(this.mode === MODES.input) {
+      if( this.range ) {
+        value = {
+          from: this.querySelector('.from').value,
+          to: this.querySelector('.to').value
+        };
+      } else {
+        value = this.querySelector(this.input).value;
+      }
     }
 
     let conf = getMonths(this.monthCount, value);
 
     this.months = conf.months;
     this.monthsMap = conf.map;
-    // this.activeMonths = [moment(new Date).format['YYYYMM']];
     this.render();
-
-    this.close = (e, force) => {
-      setTimeout(() => {
-        if(force || !this.querySelectorAll(':focus').length){
-          this._component.classList.add('hidden');
-          this.querySelector(this.input).classList.remove('d-focused')
-        }
-      }, 100);
-    }
-
-    this.slideLeft = () => {
-      this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
-    }
-    this.slideRight = () => {
-      let cal = this._component.querySelector('.d-calendar');
-      cal.classList.remove('animate');
-      cal.style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
-      cal.classList.add('animate');
-    }
-
-    /**
-     * Move the calendar ahead
-     */
-    this.moveNext = () => {
-      for (var index = 0; index < this.step; index++) {
-        this.navFlag++;
-        if(!this.months[this.navFlag]){
-          let month = this.months[this.months.length - 1].add(1, 'month');
-          if(!this.monthsMap[month.format('YYYYMM')]) {
-            this.months.push(month);
-            this.monthsMap[month.format('YYYYMM')] = month;
-            $append(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
-          }
-        }
-        this.slideLeft();
-      }
-    }
-
-    /**
-     * Move the calendar behind
-     */
-    this.movePrevious = () => {
-      for (var index = 0; index < this.step; index++) {
-        console.log(this.navFlag)
-        if(this.navFlag == 0){
-          let month = this.months[0].subtract(1, 'month');
-          if(!this.monthsMap[month.format('YYYYMM')]) {
-            this.months.unshift(month);
-            this.monthsMap[month.format('YYYYMM')] = month;
-            $prepend(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
-          }
-        } else {
-          this.navFlag--;
-          this.slideRight();
-        }
-      }
-    }
 
     this.bindings();
   }
 
   render() {
-    this.innerHTML += template({months: this.months, monthTagTemplate});
+    this.innerHTML += template({
+      monthTagTemplate,
+      mode: this.mode,
+      modes: MODES,
+      months: this.months,
+    });
     this._component = this.querySelector('.js-component');
     this._popup = this._component.querySelector('.d-calendar-popup');
   }
 
-  bindings() {
-    this.getWidth = () => this.querySelector(config.monthComponent).getBoundingClientRect().width;
+  close(e, force) {
+    setTimeout(() => {
+      if(force || !this.querySelectorAll(':focus').length){
+        this._component.classList.add('hidden');
+        this.querySelector(this.input).classList.remove('d-focused')
+      }
+    }, 100);
+  }
 
-    this.updateWidth = width => {
-      this.monthWidth = width || this.getWidth();
-      this._popup.style.width = (this.monthWidth * this.monthCount) + 'px';
+  slideLeft() {
+    this._component.querySelector('.d-calendar').style.marginLeft = `-${this.monthWidth * this.navFlag}px`;
+  }
+
+  slideRight() {
+    let cal = this._component.querySelector('.d-calendar');
+    cal.classList.remove('animate');
+    cal.style.marginLeft = `-${this.monthWidth * (this.navFlag)}px`;
+    cal.classList.add('animate');
+  }
+
+  /**
+   * Move the calendar ahead
+   */
+  moveNext() {
+    for (var index = 0; index < this.step; index++) {
+      this.navFlag++;
+      if(!this.months[this.navFlag+this.step]){
+        let month = this.months[this.months.length - 1].add(1, 'month');
+        if(!this.monthsMap[month.format('YYYYMM')]) {
+          this.months.push(month);
+          this.monthsMap[month.format('YYYYMM')] = month;
+          $append(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
+        }
+      }
+      this.slideLeft();
+    }
+  }
+
+  /**
+   * Move the calendar behind
+   */
+  movePrevious() {
+    for (var index = 0; index < this.step; index++) {
+      if(this.navFlag == 0){
+        let month = this.months[0].subtract(1, 'month');
+        if(!this.monthsMap[month.format('YYYYMM')]) {
+          this.months.unshift(month);
+          this.monthsMap[month.format('YYYYMM')] = month;
+          $prepend(monthTagTemplate(month), this.querySelector('.d-calendar-row'));
+        }
+      } else {
+        this.navFlag--;
+        this.slideRight();
+      }
+    }
+  }
+
+  getWidth() {
+    return this.querySelector(config.monthComponent).getBoundingClientRect().width;
+  }
+
+  updateWidth(width) {
+    this.monthWidth = width || this.getWidth();
+    this._popup.style.width = (this.monthWidth * this.monthCount) + 'px';
+  }
+
+  bindings() {
+    if(this.mode === MODES.input){
+      $find(this.input, this).forEach(el => {
+        el.addEventListener(this.openEvent, (e) => {
+          this._component.classList.remove('hidden');
+          this.querySelector(this.input).classList.add('d-focused')
+          if(!this.monthWidth) {
+            this.updateWidth();
+          }
+        })
+        // el.addEventListener(this.closeEvent, this.close)
+      });
     }
 
-    $find(this.input, this).forEach(el => {
-      el.addEventListener(this.openEvent, (e) => {
-        this._component.classList.remove('hidden');
-        this.querySelector(this.input).classList.add('d-focused')
-        if(!this.monthWidth) {
-          this.updateWidth();
-        }
-      })
-      el.addEventListener(this.closeEvent, this.close)
-    });
     this.addEventListener('click', (e) => {
       if(e.target.classList.contains('d-calendar-day-button')){
         this.value = e.target.value;
@@ -149,9 +170,12 @@ class Calendar extends HTMLElement {
         this.querySelector('.selected').classList.remove('selected');
         e.target.classList.add('selected');
         // this.close(e, true);
-        $find(this.input, this).forEach(el => {
-          el.value = this.value;
-        })
+        if(this.mode === MODES.input){
+          $find(this.input, this).forEach(el => {
+            el.value = this.value;
+          });
+        }
+        this.dispatchEvent(new Event('change'));
       }
     });
 
@@ -161,17 +185,6 @@ class Calendar extends HTMLElement {
     this.querySelector('.d-calender-navigation-next').addEventListener('click', (e) => {
       this.moveNext();
     })
-    $find('.d-calendar-day-button', this).forEach(el => {
-      el.addEventListener('mouseenter', e => {
-
-        this.hoveredDate = e.target.value;
-        console.log(`hover ${this.hoveredDate}`)
-      })
-      el.addEventListener('mouseleave', e => {
-
-        this.hoveredDate = null;
-      })
-    });
   }
 }
 
