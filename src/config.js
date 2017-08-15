@@ -12,6 +12,9 @@ const calendarComponent = `${namespace}-${calendar}`;
 const rangePicker = `rangepicker`;
 const rangePickerComponent = `${namespace}-${rangePicker}`;
 
+const datePicker = `datepicker`;
+const datePickerComponent = `${namespace}-${datePicker}`;
+
 module.exports = {
   namespace,
 
@@ -23,6 +26,9 @@ module.exports = {
 
   calendar,
   calendarComponent,
+
+  datePicker,
+  datePickerComponent,
 
   rangePicker,
   rangePickerComponent,
