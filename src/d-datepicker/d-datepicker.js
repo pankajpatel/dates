@@ -1,5 +1,4 @@
 require('document-register-element');
-const moment = require('moment');
 const config = require('../config');
 const template = require('./datepicker.t');
 const { $find } = require('../utils/dom');
@@ -12,7 +11,6 @@ class DatePicker extends HTMLElement {
   }
 
   connectedCallback() {
-    this.moment = moment;
     const contents = this.innerHTML;
     let attrs = [];
     this.hasAttribute('on') ? attrs.push[{name: 'on', value: this.getAttribute('on')}] : null;
@@ -28,7 +26,7 @@ class DatePicker extends HTMLElement {
 
   bindings(){
     this.calendar.addEventListener('change', () => {
-      console.log('Range', this.calendar.value);
+      console.log('DatePicker', this.calendar.value);
     })
   }
 }

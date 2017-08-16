@@ -9,11 +9,11 @@ const monthComponent = `${namespace}-${month}`;
 const calendar = `calendar`;
 const calendarComponent = `${namespace}-${calendar}`;
 
-const rangePicker = `rangepicker`;
-const rangePickerComponent = `${namespace}-${rangePicker}`;
-
 const datePicker = `datepicker`;
 const datePickerComponent = `${namespace}-${datePicker}`;
+
+const rangePicker = `rangepicker`;
+const rangePickerComponent = `${namespace}-${rangePicker}`;
 
 module.exports = {
   namespace,
