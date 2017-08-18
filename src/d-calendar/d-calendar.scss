@@ -1,56 +1,13 @@
 d-calendar {
+  margin-top: 2px;
+  left: 0;
+  border: 1px solid #ccc;
   position: relative;
-  .hidden {
-    display: none;
-  }
-  &[mode='static'] {
-    display: block;
-    .js-component {
-      display: inline-block !important;
-      position: relative;
-      .arrow {
-        display: none;
-      }
-      .d-calendar-popup{
-        position: static;
-      }
-    }
-  }
-  .d-calendar-popup {
-    margin-top: 2px;
-    left: 0;
-    border: 1px solid #ccc;
-    position: absolute;
-    background: white;
-    overflow: hidden;
-    box-sizing: content-box;
-    * {
-      box-sizing: border-box;
-    }
-  }
-  .arrow {
-    display: block;
-    margin-left: 10px;
-    position: relative;
-    bottom: -2px;
-    width: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #ccc;
-    border-top: 0;
-    &:before {
-      content: '';
-      display: block;
-      top: 2px;
-      left: -9px;
-      z-index: 10;
-      position: absolute;
-      width: 0;
-      border-left: 9px solid transparent;
-      border-right: 9px solid transparent;
-      border-bottom: 9px solid white;
-      border-top: 0;
-    }
+  background: white;
+  overflow: hidden;
+  box-sizing: content-box;
+  * {
+    box-sizing: border-box;
   }
   .d-calendar {
     display: table;
@@ -58,30 +15,30 @@ d-calendar {
     &.animate {
       transition: margin ease 0.2s;
     }
-  }
-  .d-calendar-row {
-    display: table-row;
-  }
-
-  .d-calender-navigation-next,
-  .d-calender-navigation-previous {
-    position: absolute;
-    top: 8px;
-    border: 1px solid #ccc;
-    background: #eee;
-    border-radius: 2px;
-    z-index: 1;
-    font-size: 16px;
-    line-height: 1;
-    &:hover{
-      background: #dedede;
+    .d-calendar-row {
+      display: table-row;
     }
-  }
-  .d-calender-navigation-previous {
-    left: 8px;
-  }
-  .d-calender-navigation-next {
-    right: 8px;
-    transform: rotate(180deg)
+
+    .d-calender-navigation-next,
+    .d-calender-navigation-previous {
+      position: absolute;
+      top: 8px;
+      border: 1px solid #ccc;
+      background: #eee;
+      border-radius: 2px;
+      z-index: 1;
+      font-size: 16px;
+      line-height: 1;
+      &:hover{
+        background: #dedede;
+      }
+    }
+    .d-calender-navigation-previous {
+      left: 8px;
+    }
+    .d-calender-navigation-next {
+      right: 8px;
+      transform: rotate(180deg)
+    }
   }
 }
