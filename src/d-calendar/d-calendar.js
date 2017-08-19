@@ -51,17 +51,6 @@ class Calendar extends HTMLElement {
     // Flag for the Navigation of months
     this.navFlag = 0;
 
-    if(this.mode === MODES.input) {
-      if( this.range ) {
-        value = {
-          from: this.querySelector('.from').value,
-          to: this.querySelector('.to').value
-        };
-      } else {
-        value = this.querySelector(this.input).value;
-      }
-    }
-
     let conf = getMonths(this.monthCount, value);
 
     this.months = conf.months;
@@ -72,23 +61,15 @@ class Calendar extends HTMLElement {
   }
 
   render() {
-    this.innerHTML += template({
+    this.innerHTML = template({
       monthTagTemplate,
       mode: this.mode,
       modes: MODES,
       months: this.months,
     });
-    this._component = this.querySelector('.js-component');
-    this._popup = this._component.querySelector('.d-calendar-popup');
-  }
-
-  close(e, force) {
-    setTimeout(() => {
-      if(force || !this.querySelectorAll(':focus').length){
-        this._component.classList.add('hidden');
-        this.querySelector(this.input).classList.remove('d-focused')
-      }
-    }, 100);
+    this._component = this;
+    // this._popup = this._component.querySelector('.d-calendar-popup');
+    this._popup = this;
   }
 
   slideLeft() {
@@ -145,23 +126,11 @@ class Calendar extends HTMLElement {
 
   updateWidth(width) {
     this.monthWidth = width || this.getWidth();
-    this._popup.style.width = (this.monthWidth * this.monthCount) + 'px';
+    // this._popup.style.width = (this.monthWidth * this.monthCount) + 'px';
+    this._popup.style;
   }
 
   bindings() {
-    if(this.mode === MODES.input){
-      $find(this.input, this).forEach(el => {
-        el.addEventListener(this.openEvent, (e) => {
-          this._component.classList.remove('hidden');
-          this.querySelector(this.input).classList.add('d-focused')
-          if(!this.monthWidth) {
-            this.updateWidth();
-          }
-        })
-        // el.addEventListener(this.closeEvent, this.close)
-      });
-    }
-
     this.addEventListener('click', (e) => {
       if(e.target.classList.contains('d-calendar-day-button')){
         this.value = e.target.value;
