@@ -44,16 +44,14 @@ class DatePicker extends HTMLElement {
 
   bindings(){
     this.calendar.addEventListener('change', () => {
-      console.log('DatePicker', this.calendar.value);
+      // console.log('DatePicker', this.calendar.value);
     });
 
     $find(this.input, this).forEach(el => {
       el.addEventListener(this.openEvent, (e) => {
         this._component.classList.remove('hidden');
         this.querySelector(this.input).classList.add('d-focused')
-        if(!this.monthWidth) {
-          this.updateWidth();
-        }
+          this.calendar.updateWidth();
       })
       // el.addEventListener(this.closeEvent, this.close)
     });

@@ -29,14 +29,14 @@ class RangePicker extends HTMLElement {
     $find(config.dayComponent, this).forEach(el => {
       el.addEventListener('mouseenter', e => {
         this.hoveredDate = e.target.value;
-        console.log(`hover ${this.hoveredDate}`)
+        // console.log(`hover ${this.hoveredDate}`)
       })
       el.addEventListener('mouseleave', e => {
         this.hoveredDate = null;
       })
     });
     this.calendar.addEventListener('change', () => {
-      console.log('Range', this.calendar.value);
+      // console.log('Range', this.calendar.value);
     })
   }
 

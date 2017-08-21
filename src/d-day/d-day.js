@@ -18,7 +18,7 @@ class Day extends HTMLElement {
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
-    console.log(oldValue, newValue)
+    // console.log(oldValue, newValue)
     if (oldValue === newValue) {
       return;
     }

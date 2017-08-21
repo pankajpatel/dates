@@ -126,15 +126,14 @@ class Calendar extends HTMLElement {
 
   updateWidth(width) {
     this.monthWidth = width || this.getWidth();
-    // this._popup.style.width = (this.monthWidth * this.monthCount) + 'px';
-    this._popup.style;
+    this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
+    // this._popup.style;
   }
 
   bindings() {
     this.addEventListener('click', (e) => {
       if(e.target.classList.contains('d-calendar-day-button')){
         this.value = e.target.value;
-        console.log(this.value);
         // Unselect the selected date
         this.querySelector('.selected').classList.remove('selected');
         e.target.classList.add('selected');
@@ -144,16 +143,22 @@ class Calendar extends HTMLElement {
             el.value = this.value;
           });
         }
-        this.dispatchEvent(new Event('change'));
+        const event = new Event('change');
+        event.data = {
+          value: this.value
+        }
+        this.dispatchEvent(event);
       }
     });
 
     this.querySelector('.d-calender-navigation-previous').addEventListener('click', (e) => {
       this.movePrevious();
-    })
+    });
     this.querySelector('.d-calender-navigation-next').addEventListener('click', (e) => {
       this.moveNext();
-    })
+    });
+
+    this.updateWidth();
   }
 }
 
