@@ -36,7 +36,7 @@ class RangePicker extends HTMLElement {
       })
     });
     this.calendar.addEventListener('change', () => {
-      // console.log('Range', this.calendar.value);
+      console.log('Range', this.calendar.value);
     })
   }
 
