@@ -59,3 +59,4 @@ class DatePicker extends HTMLElement {
 }
 
 customElements.define(config.datePickerComponent, DatePicker);
+module.exports = DatePicker;

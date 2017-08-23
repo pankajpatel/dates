@@ -1,12 +1,12 @@
 const config = require('../src/config');
 const {storiesOf} = require('ascesis-storybook');
 
-const {withConsole} = require('../.storybook/console-plugin');
+// const {withConsole} = require('../.storybook/console-plugin');
 
 require('../src/d-calendar/d-calendar')
 
 storiesOf('Calendar')
-  .addDecorator(withConsole())
+  // .addDecorator(withConsole())
   .add('default', () => `
     <label>Date of Birth</label>
     <${config.calendarComponent}>
