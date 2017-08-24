@@ -1,4 +1,5 @@
 const config = require('../config');
+
 module.exports = data => `<div class="d-calendar-month">
   <table>
     <caption>
@@ -14,25 +15,26 @@ module.exports = data => `<div class="d-calendar-month">
       </ul>
     </caption>
     <tbody>
-      ${data.weeks.map(week => `<tr>
-        ${week.map(day => {
-          let disabled = '';
-          let outOfMonth = '';
-          if(day && data.month && day.month() !== data.month.month()){
-            disabled = 'disabled';
-            outOfMonth = 'out-of-month';
-          }
-          let selected = day.date() == 15 ? 'selected' : '';
-          let highlighted = day.date() == 18 ? 'highlighted' : '';
-          let d = day.format('YYYY-MM-DD');
-          return `<td class="d-calendar-day
-            ${disabled} ${selected} ${highlighted}" date="${d}"
-            ><${config.dayComponent}
-              ${disabled} ${selected} ${highlighted}
-              date="${d}" ${outOfMonth}
-              >${day.format('D')}</${config.dayComponent}
-            ></td>`}).join('')}
-        </tr>`).join('')}
+${data.weeks.map(week => `<tr>
+  ${week.map((day) => {
+    let disabled = '';
+    let outOfMonth = '';
+    if (day && data.month && day.month() !== data.month.month()) {
+      disabled = 'disabled';
+      outOfMonth = 'out-of-month';
+    }
+    const selected = day.date() === 15 ? 'selected' : '';
+    const highlighted = day.date() === 18 ? 'highlighted' : '';
+    const d = day.format('YYYY-MM-DD');
+    return `<td class="d-calendar-day
+      ${disabled} ${selected} ${highlighted}" date="${d}"
+      ><${config.dayComponent}
+        ${disabled} ${selected} ${highlighted}
+        date="${d}" ${outOfMonth}
+        >${day.format('D')}</${config.dayComponent}
+      ></td>`;
+  }).join('')}
+</tr>`).join('')}
     </tbody>
   </table>
-</div>`
+</div>`;

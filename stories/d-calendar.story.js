@@ -1,9 +1,9 @@
 const config = require('../src/config');
-const {storiesOf} = require('ascesis-storybook');
+const { storiesOf } = require('ascesis-storybook');
 
 // const {withConsole} = require('../.storybook/console-plugin');
 
-require('../src/d-calendar/d-calendar')
+require('../src/d-calendar/d-calendar');
 
 storiesOf('Calendar')
   // .addDecorator(withConsole())
@@ -56,4 +56,4 @@ storiesOf('Calendar')
       });
     </script>
     <small>Shows 2 months and stps over two months</small>
-  `)
+  `);

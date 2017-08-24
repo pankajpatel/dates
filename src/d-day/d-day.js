@@ -9,10 +9,6 @@ export const SELECTED_CLASS = 'd-day-selected';
 export const HIGHLIGHTED_CLASS = 'd-day-highlighted';
 
 class Day extends HTMLElement {
-  constructor() {
-    super();
-  }
-
   static get observedAttributes() {
     return ['highlighted', 'selected', 'disabled'];
   }
