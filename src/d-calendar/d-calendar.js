@@ -10,12 +10,6 @@ const { $find, $append, $prepend } = require('../utils/dom');
 require('./d-calendar.scss');
 require('../d-month/d-month');
 
-export const MODES = {
-  input: 'input',
-  static: 'static',
-};
-export const DEFAULT_MODE = MODES.input;
-
 moment.locale('en');
 
 class Calendar extends HTMLElement {
@@ -28,9 +22,6 @@ class Calendar extends HTMLElement {
     this.input = this.getAttribute('on') || '.datepicker';
     this.openEvent = this.getAttribute('open-event') || 'focus';
     this.closeEvent = this.getAttribute('close-event') || 'blur';
-
-    // Mode of Calendar
-    this.mode = this.getAttribute('mode') || DEFAULT_MODE;
 
     // Is the calendar used as range?
     this.range = this.hasAttribute('range');
@@ -64,12 +55,9 @@ class Calendar extends HTMLElement {
     this.innerHTML = template({
       monthTagTemplate,
       mode: this.mode,
-      modes: MODES,
       months: this.months,
     });
     this._component = this;
-    // this._popup = this._component.querySelector('.d-calendar-popup');
-    this._popup = this;
   }
 
   slideLeft() {
@@ -127,7 +115,6 @@ class Calendar extends HTMLElement {
   updateWidth(width) {
     this.monthWidth = width || this.getWidth();
     this._component.style.width = (this.monthWidth * this.monthCount) + 'px';
-    // this._popup.style;
   }
 
   bindings() {
@@ -135,15 +122,8 @@ class Calendar extends HTMLElement {
       if(e.target.classList.contains('d-calendar-day-button')){
         this.value = e.target.value;
         // Unselect the selected date
-        console.log(this.value)
         this.querySelector('.selected').classList.remove('selected');
         e.target.classList.add('selected');
-        // this.close(e, true);
-        if(this.mode === MODES.input){
-          $find(this.input, this).forEach(el => {
-            el.value = this.value;
-          });
-        }
         const event = new Event('change');
         event.data = {
           value: this.value
