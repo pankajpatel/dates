@@ -13,9 +13,6 @@ class DatePicker extends HTMLElement {
   connectedCallback() {
     const contents = this.innerHTML;
     let attrs = [];
-    this.hasAttribute('on') ? attrs.push[{name: 'on', value: this.getAttribute('on')}] : null;
-    this.hasAttribute('open-event') ? attrs.push[{name: 'open-event', value: this.getAttribute('open-event')}] : null;
-    this.hasAttribute('close-event') ? attrs.push[{name: 'close-event', value: this.getAttribute('close-event')}] : null;
     this.hasAttribute('months') ? attrs.push[{name: 'months', value: this.getAttribute('months')}] : null;
     this.hasAttribute('step') ? attrs.push[{name: 'step', value: this.getAttribute('step')}] : null;
 
@@ -44,7 +41,8 @@ class DatePicker extends HTMLElement {
 
   bindings(){
     this.calendar.addEventListener('change', () => {
-      // console.log('DatePicker', this.calendar.value);
+      // Populate the input with picked value
+      this.querySelector(this.input).value = this.calendar.value;
     });
 
     $find(this.input, this).forEach(el => {

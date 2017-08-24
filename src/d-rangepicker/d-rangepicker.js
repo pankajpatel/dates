@@ -13,21 +13,29 @@ class RangePicker extends DatePicker {
   }
 
   connectedCallback() {
-    super.connectedCallback();
-    // const contents = this.innerHTML;
-    // let attrs = [];
-    // this.hasAttribute('on') ? attrs.push[{name: 'on', value: this.getAttribute('on')}] : null;
-    // this.hasAttribute('open-event') ? attrs.push[{name: 'open-event', value: this.getAttribute('open-event')}] : null;
-    // this.hasAttribute('close-event') ? attrs.push[{name: 'close-event', value: this.getAttribute('close-event')}] : null;
-    // this.hasAttribute('months') ? attrs.push[{name: 'months', value: this.getAttribute('months')}] : null;
     // this.hasAttribute('step') ? attrs.push[{name: 'step', value: this.getAttribute('step')}] : null;
-
-    // this.innerHTML = template({config, contents, attrs});
-    // this.calendar = this.querySelector(config.calendarComponent);
-    // this.bindings();
+    super.connectedCallback();
   }
 
   bindings(){
+    this.calendar.addEventListener('change', () => {
+      // Populate the input with picked value
+      this.querySelector(`${this.input}.d-focused`).value = this.calendar.value;
+      // Hide calendar and remove focus ring
+      this._component.classList.add('hidden');
+      this.querySelector(`${this.input}.d-focused`).classList.remove('d-focused');
+
+    });
+
+    $find(this.input, this).forEach(el => {
+      el.addEventListener(this.openEvent, (e) => {
+        this._component.classList.remove('hidden');
+        e.target.classList.add('d-focused');
+        this.calendar.updateWidth();
+      })
+      // el.addEventListener(this.closeEvent, this.close)
+    });
+
     $find(config.dayComponent, this).forEach(el => {
       el.addEventListener('mouseenter', e => {
         this.hoveredDate = e.target.value;
@@ -37,9 +45,6 @@ class RangePicker extends DatePicker {
         this.hoveredDate = null;
       })
     });
-    this.calendar.addEventListener('change', () => {
-      console.log('Range', this.calendar.value);
-    })
   }
 
   selectDuration(startDate, stopDate) {
