@@ -39,6 +39,7 @@ d-rangepicker {
     border-right: 10px solid transparent;
     border-bottom: 10px solid #ccc;
     border-top: 0;
+    transition: margin linear 200ms;
     &:before {
       content: '';
       display: block;
