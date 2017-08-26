@@ -54,10 +54,13 @@ class RangePicker extends DatePicker {
     $find(config.dayComponent, this).forEach((el) => {
       el.addEventListener('mouseenter', (e) => {
         this.hoveredDate = e.target.value;
-        // console.log(`hover ${this.hoveredDate}`)
+        console.log(`hover ${this.hoveredDate}`, this.querySelector(`${this.input}.from`).value, this.querySelector(`${this.input}.to`).value)
+        this.highlightDuration(this.querySelector(`${this.input}.from`).value, this.hoveredDate )
+
       });
       el.addEventListener('mouseleave', (e) => {
         this.hoveredDate = null;
+        this.unhighlightDuration();
       });
     });
   }
