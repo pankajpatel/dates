@@ -9,6 +9,12 @@ storiesOf('Range Picker')
     <input type="text" class="datepicker from" placeholder="Select Dates" />
     <input type="text" class="datepicker to" placeholder="Select Dates" />
   </${config.rangePickerComponent}><br/>
+  <script>
+  console.log('script loaded');
+  document.querySelector('${config.rangePickerComponent}').addEventListener('range', (e) => {
+    console.log(document.querySelector('${config.rangePickerComponent}').value);
+  });
+</script>
   `)
   .add('pivoted', () => `
     <${config.rangePickerComponent} for-rangepicker="2018-01-01"></${config.rangePickerComponent}>

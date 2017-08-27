@@ -4,9 +4,7 @@ import template from './rangepicker.t';
 import { $find } from '../utils/dom';
 
 import onEachDateInRange from '../utils/dateSet';
-import '../d-calendar/d-calendar';
 import DatePicker from '../d-datepicker/d-datepicker';
-
 import './d-rangepicker.scss';
 
 class RangePicker extends DatePicker {
@@ -14,11 +12,13 @@ class RangePicker extends DatePicker {
     this.mode = this.getAttribute('mode') || 'individual';
 
     super.connectedCallback();
+    this.value = [];
     // if (this.hasAttribute('step')) {
     //   attrs.push({ name: 'step', value: this.getAttribute('step') });
     // }
     this.arrow = this.querySelector('.arrow');
   }
+
 
   removeFocus() {
     // Hide calendar and remove focus ring
@@ -32,18 +32,30 @@ class RangePicker extends DatePicker {
   }
 
   bindings() {
-    this.calendar.addEventListener('change', () => {
+    this.calendar.addEventListener('change', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       // Populate the input with picked value
       this.querySelector(`${this.input}.d-focused`).value = this.calendar.value;
+      if (this.value.length >= 2) {
+        this.value = [];
+      }
+      this.value.push(this.calendar.value);
+      this.value = this.value.sort((a, b) => a - b);
       this.removeFocus();
+      const event = new Event('range');
+      event.data = {
+        value: this.value,
+      };
+      this.dispatchEvent(event);
     });
 
     $find(this.input, this).forEach((el) => {
       el.addEventListener(this.openEvent, (e) => {
         this.removeFocus()
         const input = e.target;
-        this._component.classList.remove('hidden');
         input.classList.add('d-focused');
+        this._component.classList.remove('hidden');
         let position = input.getBoundingClientRect()
         this.arrow.style.marginLeft = `${position.left + 10}px`;
         this.calendar.updateWidth();
@@ -51,12 +63,10 @@ class RangePicker extends DatePicker {
       // el.addEventListener(this.closeEvent, this.close)
     });
 
-    $find(config.dayComponent, this).forEach((el) => {
+    $find(`${config.dayComponent}:not([out-of-month])`, this).forEach((el) => {
       el.addEventListener('mouseenter', (e) => {
         this.hoveredDate = e.target.value;
-        console.log(`hover ${this.hoveredDate}`, this.querySelector(`${this.input}.from`).value, this.querySelector(`${this.input}.to`).value)
-        this.highlightDuration(this.querySelector(`${this.input}.from`).value, this.hoveredDate )
-
+        this.highlightDuration(this.querySelector(`${this.input}.from`).value, this.hoveredDate );
       });
       el.addEventListener('mouseleave', (e) => {
         this.hoveredDate = null;
