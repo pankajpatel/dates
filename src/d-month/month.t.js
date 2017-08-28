@@ -23,8 +23,10 @@ ${data.weeks.map(week => `<tr>
       disabled = 'disabled';
       outOfMonth = 'out-of-month';
     }
-    const selected = day.date() === 15 ? 'selected' : '';
-    const highlighted = day.date() === 18 ? 'highlighted' : '';
+    // const selected = day.date() === 15 ? 'selected' : '';
+    // const highlighted = day.date() === 18 ? 'highlighted' : '';
+    const selected = '';
+    const highlighted = '';
     const d = day.format('YYYY-MM-DD');
     return `<td class="d-calendar-day
       ${disabled} ${selected} ${highlighted}" date="${d}"

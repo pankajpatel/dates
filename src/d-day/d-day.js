@@ -14,14 +14,13 @@ class Day extends HTMLElement {
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
-    // console.log(oldValue, newValue)
-    if (oldValue === newValue) {
-      return;
+    if (oldValue !== newValue) {
+      // console.log(this.value);
     }
   }
 
   connectedCallback() {
-    this.day = moment(this.getAttribute('date') || new Date);
+    this.day = moment(this.getAttribute('date') || new Date());
     this.value = this.getAttribute('date');
     this.innerHTML = template({
       day: this.day,

@@ -119,7 +119,9 @@ class Calendar extends HTMLElement {
       if (e.target.classList.contains('d-calendar-day-button')) {
         this.value = e.target.value;
         // Unselect the selected date
-        this.querySelector('.selected').classList.remove('selected');
+        if (this.querySelector('.selected')) {
+          this.querySelector('.selected').classList.remove('selected');
+        }
         e.target.classList.add('selected');
         const event = new Event('change');
         event.data = {

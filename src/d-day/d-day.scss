@@ -32,7 +32,7 @@
       color: #dedede;
     }
     &:not([disabled]):hover {
-      background: #efefef;
+      background: rgba(100, 100, 100, 0.4);
     }
   }
 }

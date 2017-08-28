@@ -2,8 +2,9 @@ const moment = require('moment');
 
 export default (startDate, stopDate, callbackForEach) => {
   const dateArray = [];
-  let currentDate = moment(startDate);
-  const endDate = moment(stopDate);
+  const input = [moment(startDate), moment(stopDate)].sort((a, b) => a - b);
+  let currentDate = input[0];
+  const endDate = input[1];
   while (currentDate <= endDate) {
     const newDate = moment(currentDate).format('YYYY-MM-DD');
     dateArray.push(newDate);
