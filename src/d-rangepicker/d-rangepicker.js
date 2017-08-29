@@ -7,6 +7,11 @@ import onEachDateInRange from '../utils/dateSet';
 import DatePicker from '../d-datepicker/d-datepicker';
 import './d-rangepicker.scss';
 
+const MODES = {
+  individual: 'individual', // shows and hides calender for
+  continuous: 'continuous',
+};
+
 class RangePicker extends DatePicker {
   connectedCallback() {
     this.mode = this.getAttribute('mode') || 'individual';
@@ -23,9 +28,9 @@ class RangePicker extends DatePicker {
   removeFocus() {
     // Hide calendar and remove focus ring
     this._component.classList.add('hidden');
-    const focused = $find(`${this.input}.d-focused`, this)
-    if(focused.length > 0) {
-      focused.forEach(el => {
+    const focused = $find(`${this.input}.d-focused`, this);
+    if (focused.length > 0) {
+      focused.forEach((el) => {
         el.classList.remove('d-focused');
       });
     }
@@ -51,22 +56,32 @@ class RangePicker extends DatePicker {
     });
 
     $find(this.input, this).forEach((el) => {
+      let timeout =  null;
       el.addEventListener(this.openEvent, (e) => {
-        this.removeFocus()
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+        this.removeFocus();
         const input = e.target;
         input.classList.add('d-focused');
         this._component.classList.remove('hidden');
-        let position = input.getBoundingClientRect()
+        const position = input.getBoundingClientRect();
         this.arrow.style.marginLeft = `${position.left + 10}px`;
         this.calendar.updateWidth();
       });
-      // el.addEventListener(this.closeEvent, this.close)
+      el.addEventListener(this.closeEvent, (e) => {
+        debugger
+        timeout = setTimeout(() => {
+          debugger
+          this.close(e, true);
+        }, 100);
+      });
     });
 
     $find(`${config.dayComponent}:not([out-of-month])`, this).forEach((el) => {
       el.addEventListener('mouseenter', (e) => {
         this.hoveredDate = e.target.value;
-        this.highlightDuration(this.querySelector(`${this.input}.from`).value, this.hoveredDate );
+        this.highlightDuration(this.querySelector(`${this.input}.from`).value, this.hoveredDate);
       });
       el.addEventListener('mouseleave', (e) => {
         this.hoveredDate = null;
