@@ -8,11 +8,19 @@
 
 ## Install
 
-Install the component using [Bower](http://bower.io/):
+Install the component using 
 
-```sh
-$ bower install git@github.com:pankajpatel/dates.git --save
-```
+1. [Bower](http://bower.io/):
+
+    ```sh
+    $ bower install git@github.com:pankajpatel/dates.git --save
+    ```
+
+2. [npm](http://npmjs.org/):
+
+    ```sh
+    $ npm install pankajpatel/dates --save
+    ```
 
 Or [download as ZIP](https://github.com/pankajpatel/git@github.com:pankajpatel/dates.git/archive/master.zip).
 
@@ -42,12 +50,12 @@ Or [download as ZIP](https://github.com/pankajpatel/git@github.com:pankajpatel/d
 
 Attribute     | Options     | Default      | Description
 ---           | ---         | ---          | ---
-`on`         | *string*    | `.datepicker`        | The Input selector on which DatePicker is to be bound
-`open-event`         | *string*    | `focus`        | Event name on the Input selector to trigger DatePicker's open
-`close-event`         | *string*    | `blur`        | Event name on the Input selector to trigger DatePicker's close
-`months`         | *number*    | `1`        | Number of months to be shown by Datepicker
-`step`         | *number*    | `1`        | Number of months to Step through on month navigation
-`range`         | *boolean*    | `true`        | Enables the rangepicker
+`on` | *string* | `.datepicker`| The Input selector on which DatePicker is to be bound
+`open-event` | *string* | `focus` | Event name on the Input selector to trigger DatePicker's open
+`close-event` | *string* | `blur` | Event name on the Input selector to trigger DatePicker's close
+`months` | *number* | `1` | Number of months to be shown by Datepicker
+`step` | *number* | `1` | Number of months to Step through on month navigation
+`range` | *boolean* | `true`  | Enables the rangepicker
 
 ## Methods
 
