@@ -1,20 +1,28 @@
+// Common CSS Loading Configs
+const cssLoader = ['style-loader', {
+  loader: 'css-loader',
+  options: {
+    minimize: true,
+  },
+}];
+
 module.exports = {
   module:{
-    loaders: [
+    rules: [
       {
-        test: /.scss?$/,
-        loader: 'style-loader!css-loader!sass-loader',
-        exclude: /node_modules/
+        test: /\.scss$/,
+        use: cssLoader.concat(['sass-loader']),
       },
       {
-        test: /.js?$/,
-        loader: 'babel-loader',
-        exclude: [/node_modules/],
-        query: {
-          presets: ['es2015', 'stage-0'],
-          plugins: ["transform-object-rest-spread"]
-        }
-      }
-    ]
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'stage-0'],
+            plugins: ['transform-object-rest-spread']
+          },
+        },
+      },
+    ],
   }
 }

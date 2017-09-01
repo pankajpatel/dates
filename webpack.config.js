@@ -1,29 +1,29 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   // devtool: 'eval-source-map',
   entry: {
-    app: ['babel-polyfill', path.join(__dirname, 'src' , 'd-calendar/d-calendar.js')]
+    app: ['babel-polyfill', path.join(__dirname, 'src', 'd-calendar/d-calendar.js')],
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'd-calendar.js'
+    filename: 'd-calendar.js',
   },
   resolveLoader: {
     modules: [
       'node_modules',
       path.join(__dirname, '../node_modules'),
-    ]
+    ],
   },
   resolve: {
     alias: {
-      js: path.join(__dirname, 'src' , 'js'),
-      root: __dirname
-    }
+      js: path.join(__dirname, 'src', 'js'),
+      root: __dirname,
+    },
   },
-  module:{
+  module: {
     loaders: [
       {
         test: /.js?$/,
@@ -31,23 +31,23 @@ module.exports = {
         exclude: [/node_modules/],
         query: {
           presets: ['es2015', 'stage-0'],
-          plugins: ["transform-object-rest-spread"]
-        }
+          plugins: ['transform-object-rest-spread'],
+        },
       }, {
         test: /.scss?$/,
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader'}),
-        exclude: /node_modules/
-      }
-    ]
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' }),
+        exclude: /node_modules/,
+      },
+    ],
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     colors: true,
     historyApiFallback: true,
-    inline: true
+    inline: true,
   },
   plugins: [
-    new ExtractTextPlugin("css/[name].css"),
+    new ExtractTextPlugin('css/[name].css'),
 
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -60,11 +60,11 @@ module.exports = {
         dead_code: true,
         evaluate: true,
         join_vars: true,
-        if_return: true
+        if_return: true,
       },
       output: {
-        comments: false
-      }
+        comments: false,
+      },
     }),
-  ]
-}
+  ],
+};
