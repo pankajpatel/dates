@@ -70,10 +70,10 @@ class RangePicker extends DatePicker {
         this.calendar.updateWidth();
       });
       el.addEventListener(this.closeEvent, (e) => {
-        debugger
         timeout = setTimeout(() => {
-          debugger
-          this.close(e, true);
+          if(!this.querySelectorAll(`${this.input}.d-focused`).length) {
+            this.close(e, true);
+          }
         }, 100);
       });
     });
