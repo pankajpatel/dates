@@ -71,7 +71,9 @@ class RangePicker extends DatePicker {
       });
       el.addEventListener(this.closeEvent, (e) => {
         timeout = setTimeout(() => {
-          this.close(e, true);
+          if(!this.querySelectorAll(`${this.input}.d-focused`).length) {
+            this.close(e, true);
+          }
         }, 100);
       });
     });
