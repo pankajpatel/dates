@@ -223,7 +223,7 @@ arrify@^1.0.0:
 
 ascesis-storybook@holidaypirates/ascesis-storybook:
   version "0.1.1"
-  resolved "https://codeload.github.com/holidaypirates/ascesis-storybook/tar.gz/e42fa3c702c40ba81dbe6a02785771de0df47d1e"
+  resolved "https://codeload.github.com/holidaypirates/ascesis-storybook/tar.gz/5d881f6deaac28ec353b6871203972b3f37b038d"
   dependencies:
     ascesis "git+https://github.com/holidaypirates/ascesis.git"
     babel-plugin-transform-object-rest-spread "^6.23.0"

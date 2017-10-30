@@ -52,11 +52,14 @@ class RangePicker extends DatePicker {
       event.data = {
         value: this.value,
       };
+      if (this.value.length === 2) {
+        this.selectDuration(...this.value);
+      }
       this.dispatchEvent(event);
     });
 
     $find(this.input, this).forEach((el) => {
-      let timeout =  null;
+      let timeout = null;
       el.addEventListener(this.openEvent, (e) => {
         if (timeout) {
           clearTimeout(timeout);
@@ -71,7 +74,7 @@ class RangePicker extends DatePicker {
       });
       el.addEventListener(this.closeEvent, (e) => {
         timeout = setTimeout(() => {
-          if(!this.querySelectorAll(`${this.input}.d-focused`).length) {
+          if (!this.querySelectorAll(`${this.input}.d-focused`).length) {
             this.close(e, true);
           }
         }, 100);
@@ -80,18 +83,22 @@ class RangePicker extends DatePicker {
 
     $find(`${config.dayComponent}:not([out-of-month])`, this).forEach((el) => {
       el.addEventListener('mouseenter', (e) => {
-        this.hoveredDate = e.target.value;
-        this.highlightDuration(this.querySelector(`${this.input}.from`).value, this.hoveredDate);
+        if (this.value.length < 2) {
+          this.hoveredDate = e.target.value;
+          this.highlightDuration(this.querySelector(`${this.input}.from`).value, this.hoveredDate);
+        }
       });
-      el.addEventListener('mouseleave', (e) => {
-        this.hoveredDate = null;
-        this.unhighlightDuration();
+      el.addEventListener('mouseleave', () => {
+        if (this.hoveredDate) {
+          this.hoveredDate = null;
+          this.unhighlightDuration();
+        }
       });
     });
   }
 
   selectDuration(startDate, stopDate) {
-    return onEachDateInRange(startDate, stopDate, (date, index) => {
+    return onEachDateInRange(startDate, stopDate, (date) => {
       const dateEl = this.querySelector(`${config.dayComponent}[date='${date}']:not([out-of-month])`);
       if (dateEl) {
         dateEl.markSelected();
@@ -100,7 +107,7 @@ class RangePicker extends DatePicker {
   }
 
   highlightDuration(startDate, stopDate) {
-    return onEachDateInRange(startDate, stopDate, (date, index) => {
+    return onEachDateInRange(startDate, stopDate, (date) => {
       const dateEl = this.querySelector(`${config.dayComponent}[date='${date}']:not([out-of-month])`);
       if (dateEl) {
         dateEl.markHighlighted();
