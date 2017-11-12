@@ -9,7 +9,7 @@
     "generate": "babel src -d lib",
     "watch": "webpack --progress --watch",
     "build": "webpack --progress -p",
-    "story": "ascesis-storybook",
+    "story": "modulor-storybook",
     "build-storybook": "build-storybook --output='./docs'"
   },
   "dependencies": {
@@ -17,7 +17,7 @@
     "moment": "^2.18.1"
   },
   "devDependencies": {
-    "ascesis-storybook": "holidaypirates/ascesis-storybook",
+    "modulor-storybook": "holidaypirates/modulor-storybook",
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.21.0",

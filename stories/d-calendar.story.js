@@ -1,9 +1,9 @@
 const config = require('../src/config');
-const { storiesOf } = require('ascesis-storybook');
+const { storiesOf } = require('modulor-storybook');
 
-const { withConsole } = require('ascesis-storybook/addons/console');
-const { withEvents } = require('ascesis-storybook/addons/events');
-const { withUsage } = require('ascesis-storybook/addons/usage');
+const { withConsole } = require('modulor-storybook/addons/console');
+const { withEvents } = require('modulor-storybook/addons/events');
+const { withUsage } = require('modulor-storybook/addons/usage');
 
 
 require('../src/d-calendar/d-calendar');

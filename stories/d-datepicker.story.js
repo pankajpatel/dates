@@ -1,5 +1,5 @@
 const config = require('../src/config');
-const {storiesOf} = require('ascesis-storybook');
+const {storiesOf} = require('modulor-storybook');
 
 require('../src/d-datepicker/d-datepicker');
 
