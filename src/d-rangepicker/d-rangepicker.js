@@ -10,11 +10,12 @@ import './d-rangepicker.scss';
 const MODES = {
   individual: 'individual', // shows and hides calender for
   continuous: 'continuous',
+  eventOnly: 'event-only',
 };
 
 class RangePicker extends DatePicker {
   connectedCallback() {
-    this.mode = this.getAttribute('mode') || 'individual';
+    this.mode = this.getAttribute('mode') || MODES.eventOnly;
 
     super.connectedCallback();
     this.value = [];
