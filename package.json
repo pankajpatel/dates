@@ -14,8 +14,8 @@
     "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
-    "document-register-element": "^1.7.0",
-    "moment": "^2.18.1"
+    "@ungap/custom-elements": "^1.1.0",
+    "moment": "^2.29.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.6",

@@ -1,4 +1,4 @@
-import "document-register-element";
+import "@ungap/custom-elements";
 import moment from "moment";
 import config from "../config";
 import monthWeeks from "../utils/getWeeks";

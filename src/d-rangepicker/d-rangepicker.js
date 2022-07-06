@@ -1,4 +1,4 @@
-import "document-register-element";
+import "@ungap/custom-elements";
 import config from "../config";
 import template from "./rangepicker.t";
 import { $find } from "../utils/dom";

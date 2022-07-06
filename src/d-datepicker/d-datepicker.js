@@ -1,4 +1,4 @@
-import "document-register-element";
+import "@ungap/custom-elements";
 import config from "../config";
 import template from "./datepicker.t";
 import { $find } from "../utils/dom";
