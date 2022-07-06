@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require("moment");
 
 export default (startDate, stopDate, callbackForEach) => {
   const dateArray = [];
@@ -6,10 +6,10 @@ export default (startDate, stopDate, callbackForEach) => {
   let currentDate = input[0];
   const endDate = input[1];
   while (currentDate <= endDate) {
-    const newDate = moment(currentDate).format('YYYY-MM-DD');
+    const newDate = moment(currentDate).format("YYYY-MM-DD");
     dateArray.push(newDate);
     callbackForEach(newDate, dateArray.length);
-    currentDate = moment(currentDate).add(1, 'days');
+    currentDate = moment(currentDate).add(1, "days");
   }
   return dateArray;
 };

@@ -4,7 +4,7 @@ d-rangepicker {
   .hidden {
     display: none;
   }
-  &[mode='static'] {
+  &[mode="static"] {
     display: block;
     .js-component {
       display: inline-block !important;
@@ -12,7 +12,7 @@ d-rangepicker {
       .arrow {
         display: none;
       }
-      .d-calendar-popup{
+      .d-calendar-popup {
         position: static;
       }
     }
@@ -41,7 +41,7 @@ d-rangepicker {
     border-top: 0;
     transition: margin linear 200ms;
     &:before {
-      content: '';
+      content: "";
       display: block;
       top: 2px;
       left: -9px;

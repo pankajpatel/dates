@@ -1,16 +1,16 @@
 d-month {
   display: table-cell;
   padding-top: 58px;
-  // border-right: 1px solid #ccc;
+  /* // border-right: 1px solid #ccc; */
   &:last-child,
   &[months="1"] {
-    border: 0
+    border: 0;
   }
   .d-calendar-month {
     padding: 10px;
     table {
       border-collapse: collapse;
-      position: relative
+      position: relative;
     }
     caption {
       border-bottom: 1px solid #ddd;
@@ -27,7 +27,7 @@ d-month {
         li {
           display: block;
           float: left;
-          width: calc( 100% / 7 );
+          width: calc(100% / 7);
           text-align: center;
         }
       }
