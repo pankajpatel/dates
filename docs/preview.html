@@ -1,55 +1,59 @@
+<html>
+  <head>
+    <link
+      rel="icon"
+      href="//www.iconsdb.com/icons/download/black/square-dashed-16.ico"
+      type="image/x-icon"
+    />
 
-    <html>
-      <head>
-        <link rel="icon" href="//www.iconsdb.com/icons/download/black/square-dashed-16.ico" type="image/x-icon" />
-        
     <title>Story preview</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script>console.log('Preview Header');</script>
-<style>
-  input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    margin-top: 10px;
-  }
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script>
+      console.log("Preview Header");
+    </script>
+    <style>
+      input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+      }
 
-  input[type="text"].d-focused {
-    outline: 1px dashed steelblue;
-    outline-offset: 0;
-  }
-  d-calendar {
-    font-family: system-ui;
-    display: inline-block;
-  }
-  label {
-    width: 150px;
-    display: inline-block;
-  }
-</style>
+      input[type="text"].d-focused {
+        outline: 1px dashed steelblue;
+        outline-offset: 0;
+      }
+      d-calendar {
+        font-family: system-ui;
+        display: inline-block;
+      }
+      label {
+        width: 150px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body style="margin: 0">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-  
-      </head>
-      <body style="margin:0">
-        
-<style>
-  * {
-    box-sizing: border-box;
-  }
+      body: {
+        margin: 0;
+      }
 
-  body: {
-    margin: 0;
-  }
+      sandbox-preview-application {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
 
-  sandbox-preview-application {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-</style>
-
-<sandbox-preview-application id="container"></sandbox-preview-application>
-<script src="preview.js"></script>
-
-      </body>
-    </html>
+    <sandbox-preview-application id="container"></sandbox-preview-application>
+    <script src="preview.js"></script>
+  </body>
+</html>

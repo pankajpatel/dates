@@ -1,4 +1,4 @@
-const namespace = 'd';
+const namespace = "d";
 
 const day = `day`;
 const dayComponent = `${namespace}-${day}`;
@@ -32,4 +32,4 @@ module.exports = {
 
   rangePicker,
   rangePickerComponent,
-}
+};

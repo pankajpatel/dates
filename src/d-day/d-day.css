@@ -1,13 +1,11 @@
-@import '../scss/variables';
-
 .d-calendar-day {
   padding: 0;
   width: 100%;
   height: 100%;
-  display: table-cell; // If class is used on non-TD element, force table-cell
+  display: table-cell; /* If class is used on non-TD element, force table-cell */
   border: 1px solid #e4e4e4;
-  width: $d-day-box-size;
-  height: $d-day-box-size;
+  width: var(--d-day-box-size);
+  height: var(--d-day-box-size);
   box-sizing: border-box;
   .selected {
     background: rgba(150, 150, 150, 0.5);
@@ -21,13 +19,13 @@
   }
   button {
     display: block;
-    width: $d-day-box-size - 1;
-    height: $d-day-box-size - 1;
+    width: calc(var(--d-day-box-size) - 1);
+    height: calc(var(--d-day-box-size) - 1);
     font-size: 1em;
     border: 0;
     background: transparent;
     transition: all ease 50ms;
-    &[disabled]{
+    &[disabled] {
       color: #dedede;
     }
     &:not([disabled]):hover {

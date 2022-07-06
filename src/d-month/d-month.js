@@ -1,13 +1,13 @@
-import 'document-register-element';
-import moment from 'moment';
-import config from '../config';
-import monthWeeks from '../utils/getWeeks';
-import template from './month.t';
+import "document-register-element";
+import moment from "moment";
+import config from "../config";
+import monthWeeks from "../utils/getWeeks";
+import template from "./month.t";
 
-import '../d-day/d-day';
-import './d-month.scss';
+import "../d-day/d-day";
+import "./d-month.css";
 
-const monthTitleFormat = 'MMMM YYYY';
+const monthTitleFormat = "MMMM YYYY";
 
 const monthHtml = (day) => {
   const month = moment(day);
@@ -18,7 +18,7 @@ const monthHtml = (day) => {
 
 class Month extends HTMLElement {
   connectedCallback() {
-    const date = this.getAttribute('for-month') || moment();
+    const date = this.getAttribute("for-month") || moment();
     this.innerHTML = monthHtml(date);
   }
 }

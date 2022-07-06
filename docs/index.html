@@ -1,64 +1,67 @@
+<html>
+  <head>
+    <link
+      rel="icon"
+      href="//www.iconsdb.com/icons/download/black/square-dashed-16.ico"
+      type="image/x-icon"
+    />
 
-    <html>
-      <head>
-        <link rel="icon" href="//www.iconsdb.com/icons/download/black/square-dashed-16.ico" type="image/x-icon" />
-        
+    <title>Stories manager</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
 
-  <title>Stories manager</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
-  <style>
-    html, body {
-      height: 100%;
-    }
+      body {
+        padding: 8px;
+        background-color: #f6f6f6;
+        box-sizing: border-box;
+      }
 
-    body {
-      padding: 8px;
-      background-color: #F6F6F6;
-      box-sizing: border-box;
-    }
+      .split {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
 
-    .split {
-      -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-              box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
 
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
+      .content {
+        border: 1px solid #c0c0c0;
+        box-shadow: inset 0 1px 2px #e4e4e4;
+        background-color: #fff;
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+      .gutter {
+        background-color: transparent;
 
-    .content {
-      border: 1px solid #C0C0C0;
-      box-shadow: inset 0 1px 2px #e4e4e4;
-      background-color: #fff;
-      display: block;
-      height: 100%;
-      width: 100%;
-    }
-    .gutter {
-      background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: 50%;
+      }
+      .gutter.gutter-horizontal {
+        cursor: col-resize;
+      }
+      .gutter.gutter-vertical {
+        cursor: row-resize;
+      }
+      .split.split-horizontal,
+      .gutter.gutter-horizontal {
+        height: 100%;
+        float: left;
+      }
+    </style>
+  </head>
+  <body style="margin: 0">
+    <sandbox-manager-application></sandbox-manager-application>
 
-      background-repeat: no-repeat;
-      background-position: 50%;
-    }
-    .gutter.gutter-horizontal {
-      cursor: col-resize;
-    }
-    .gutter.gutter-vertical {
-      cursor: row-resize;
-    }
-    .split.split-horizontal, .gutter.gutter-horizontal {
-      height: 100%;
-      float: left;
-    }
-  </style>
-
-      </head>
-      <body style="margin:0">
-        
-
-  <sandbox-manager-application></sandbox-manager-application>
-
-  <script src="manager.js"></script>
-
-      </body>
-    </html>
+    <script src="manager.js"></script>
+  </body>
+</html>
