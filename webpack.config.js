@@ -4,10 +4,10 @@ const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  // devtool: 'eval-source-map',
+  // devtool: "eval-source-map",
   mode: "production",
   entry: {
-    app: path.join(__dirname, "src", "d-calendar/d-calendar.js"),
+    "d-calendar": path.join(__dirname, "src", "d-calendar/d-calendar.js"),
   },
   output: {
     path: path.join(__dirname, "dist"),
